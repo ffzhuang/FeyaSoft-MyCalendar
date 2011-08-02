@@ -25,11 +25,11 @@
 
 1: To see php code, please go to:
 
-    <unzipped-folder>/web-app/js/feyaSoft/calendar/php/*.php
+    <unzipped-folder>/web-app/php/*.php
 
 2: And you can run this file:
 
-    <unzipped-folder>/web-app/js/feyaSoft/calendar/index.html
+    <unzipped-folder>/web-app/index_php.html
 
 3: And you need prepare your database
 

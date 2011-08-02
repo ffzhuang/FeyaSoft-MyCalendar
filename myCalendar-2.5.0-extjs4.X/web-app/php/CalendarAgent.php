@@ -40,7 +40,7 @@ class CalendarAgent{
     var $dbType = "mysql";
     var $dbUser = "root";
     var $dbHost = "localhost";
-    var $dbPwd="123";
+    var $dbPwd="root";
     var $dbName ="feyacalendar";
     var $dbPrefix = '';
     var $DOCUMENT_ROOT = "";

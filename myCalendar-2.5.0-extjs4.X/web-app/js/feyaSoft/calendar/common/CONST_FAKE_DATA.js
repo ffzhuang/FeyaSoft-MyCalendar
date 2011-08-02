@@ -34,8 +34,7 @@ Ext.ux.calendar.CONST = {
      *
      */
     SHOW_LANGUAGE_MENU:true,
-    
-    BLANK_IMAGE_URL:'/myCalendar/js/extjs/resources/images/default/s.gif',
+    BLANK_IMAGE_URL:'/myCalendar/js/extjs4/examples/sandbox/images/s.gif',
     /*
      *define the main path of myCalendar
      */
