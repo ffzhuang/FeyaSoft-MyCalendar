@@ -1,0 +1,55 @@
+/**
+ * FeyaSoft MyCalendar
+ * Copyright(c) 2006-2011, FeyaSoft Inc. All right reserved.
+ * info@feyasoft.com
+ * http://www.feyasoft.com
+ *
+ * Please read license first before your use myCalendar, For more detail
+ * information, please can visit our link: http://www.cubedrive.com/myCalendar
+ *
+ * You need buy one of the Feyasoft's License if you want to use MyCalendar in
+ * your commercial product. You must not remove, obscure or interfere with any
+ * FeyaSoft copyright, acknowledgment, attribution, trademark, warning or
+ * disclaimer statement affixed to, incorporated in or otherwise applied in
+ * connection with the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+1: FakeData will provide your a quick way to start myCalendar if you do not have
+   php, grails env. Download the src package and put in your directory
+
+2: Download extjs 4.x from http://www.extjs.com and put it into:
+
+    <unzipped-folder>/web-app/js/extjs4
+
+3: Start application server, for example Tomcat. Point it to this project
+
+4: Go to url:
+
+    http://localhost:8080/myCalendar/index_fakeData.html
+
+5: You will see init page appear.
+
+6: Under folder: js/feyaSoft/calendar/common
+
+   A file: CONST_FAKE_DATA.js is added.
+
+      loadEventURL:'fakeData/listEvent.json',
+      initialLoadURL:'fakeData/initLoad.json',
+
+7: And a new folder, web-app/fakeData which is used to have the init json data.
+
+8: A new index html file is added: web_app/index_fakeData.html
+
+
+
+
+
