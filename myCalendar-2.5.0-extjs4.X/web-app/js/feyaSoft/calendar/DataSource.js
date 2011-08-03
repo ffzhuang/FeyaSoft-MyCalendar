@@ -775,7 +775,7 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
             'endDay':event.eday,
             'startHMTime':stime,
             'endHMTime':etime,
-            'repeatType': ('string' == Ext.type(event.repeatType))?event.repeatType:Ext.encode(event.repeatType),                  
+            'repeatType': ('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType))?event.repeatType:Ext.encode(event.repeatType),                  
             'alertFlag':Ext.encode(event.alertFlag),
             'locked':event.locked,
             'subject':event.subject,
@@ -786,7 +786,7 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
             params.id = event.eventId;
         }
         if(oevent){
-            if('string' == Ext.type(oevent.repeatType)){
+            if('string' == Ext.ux.calendar.Mask.typeOf(oevent.repeatType)){
                 params.oldRepeatType = oevent.repeatType;
             }else{
                 params.oldRepeatType = Ext.encode(oevent.repeatType);                

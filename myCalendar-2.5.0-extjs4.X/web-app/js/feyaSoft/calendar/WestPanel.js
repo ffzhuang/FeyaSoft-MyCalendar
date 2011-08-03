@@ -25,13 +25,34 @@
 	
 Ext.define('Ext.ux.calendar.WestPanel', {
     extend : 'Ext.Panel',
-    border : false,
+    
+    title: 'Powered by feyaSoft',
+    
+    iconCls: 'icon_feyaCalendar_feyasoft',
+        
+    cls : 'x-calendar-west',
+    
+    collapsible : true,
+    
+    region : 'west',
+    
+    minWidth : 200,
+    
+    width : 200,    
+    
+    style: 'padding:5px;',
+        
+    bodyStyle: 'border:none',
+    
+    layout : 'border',    
+    
     initComponent : function() {
         var eh = this.ehandler;
         eh.applyCalendarSetting(this);
         this.ds = eh.ds;
         var lan = Ext.ux.calendar.Mask.WestPanel;
         this.datePicker = new Ext.util.DatePicker({
+        	region: 'north',
         	style:'border:1px solid #a3bad9;',
         	cls:'x-west-datepicker',
             value : new Date(),
@@ -59,62 +80,28 @@ Ext.define('Ext.ux.calendar.WestPanel', {
         if (!this.readOnly) {
             bbar.push(this.addBtn);
         }
-        this.myCalendarPanel = new Ext.Panel({
-            //style : 'padding-top:5px;',
+        this.myCalendarPanel = new Ext.Panel({            
             region : 'center',
             iconCls : 'icon_feyaCalendar_calendar',
             title : lan['myCalendarPanel.title'],
-            bodyStyle : 'padding:2px;background-color:white;overflow-x:hidden;position:relative;border:#99bce8 solid 1px;',
-            border:true,
-            frame:true,
+            style: 'padding-top:5px;',
+            bodyStyle : 'padding:2px;background-color:white;overflow-x:hidden;position:relative;',            
             autoScroll : true,
             bbar : bbar
         });
         this.myCalendarPanel.on('render', this.onMyCalendarRenderFn, this);
-	
-        this.formpanel = new Ext.form.FormPanel({
-            border : false,
-            cls : 'x-calendar-container',
-            style : 'padding:0px 10px 10px 12px;',
-            layout : 'border',
-            items : [{
-                border : false,
-                region : 'north',
-                height : 210,
-                style : 'padding:5px 0px 0px 0px;',
-                cls : 'x-dayview-west-date-span',
-                //baseCls: 'x-panel-body-default-framed',
-                items : [this.datePicker]
-            }, this.myCalendarPanel]
-        });
-        Ext.apply(this, {
-            border : false,
-            layout : 'fit',
-            //title:'www.cubedrive.com',
-            //iconCls: 'icon_feyaCalendar_feyasoft',
-            cls : 'x-calendar-west',
-            collapsible : true,
-            region : 'west',
-            minWidth : 200,
-            width : 200,
-            cmargins:'35 5 5 5',
-            items : [this.formpanel]
-        });
-        Ext.ux.calendar.WestPanel.superclass.initComponent.apply(this,arguments);
+	        
+        this.items = [this.datePicker, this.myCalendarPanel];
+        
+        this.callParent(arguments);
+        
         this.addEvents('changedate');
         this.datePicker.on('render', this.onDatePickerRenderFn, this);
         this.datePicker.on('select', this.onSelectFn, this);
         this.on('changedate', this.changeDateLabel, this);
-        this.on('render', this.onRenderFn, this);
-        this.on('afterlayout', this.onAfterlayoutFn, this);
+        this.on('render', this.onRenderFn, this);        
     },
-    onAfterlayoutFn:function(){
-        var f= this.el.first();
-        f.removeCls('x-panel-header-default-top');
-        f.removeCls('x-panel-header-default');
-        this.body.removeCls('x-panel-body-default');
-		  
-    },
+    
     onOtherCalendarRenderFn : function(p) {
         var eh = this.ehandler;
         eh.renderSharedCalendar(p.body);

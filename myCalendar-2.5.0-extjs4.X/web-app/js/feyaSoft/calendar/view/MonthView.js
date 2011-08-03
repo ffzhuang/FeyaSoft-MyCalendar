@@ -25,7 +25,9 @@
 Ext.ns("Ext.ux.calendar.view");
 
 Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
-
+	
+	bodyStyle : 'background:none;',
+	
 	legendHeight : 17,
 
 	border : false,
@@ -864,7 +866,7 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 					event.eday = Ext.Date.format(Ext.Date.add(date,
 									Ext.Date.DAY, dnum), 'Y-m-d');
 					event.day = day;
-					if ('string' == Ext.type(event.repeatType)) {
+					if ('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)) {
 						eh.updateEvent(event, cview, null, oevent);
 					} else {
 						event.repeatType = 'exception';
@@ -1129,7 +1131,7 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 						var orlist = [];
 						for (var i = 0, len = elist.length; i < len; i++) {
 							var e = elist[i];
-							if ('string' == Ext.type(e.repeatType)) {
+							if ('string' == Ext.ux.calendar.Mask.typeOf(e.repeatType)) {
 								olist.push(Ext.apply({}, e));
 							} else {
 								orlist.push(Ext.apply({}, e));
@@ -1263,7 +1265,7 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 				}
 			}
 		}
-		if (w == undefined || false == Ext.type(w)) {
+		if (w == undefined || false == Ext.ux.calendar.Mask.typeOf(w)) {
 			for (var i = 0; i < this.templateRowNum; i++) {
 				fn([i])
 				// Ext.defer(fn, 1,this,[([i])]);

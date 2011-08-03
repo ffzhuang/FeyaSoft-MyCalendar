@@ -33,14 +33,14 @@
 
 3: And you need prepare your database
 
-    please run - myCalendar2.0-tables.sql (this is mysql version)
+    please run - myCalendar2.5.0-tables.sql (this is mysql version)
     If you are a myCalendar1.0 user, you may not use the old tables directly
     You need reset the tables, or transfer the old data to new tables
     (Now we did not support that, you have to write the transfer function by yourself)
 
 4: Download extjs 4 from http://www.extjs.com and put it into:
 
-    <unzipped-folder>/web-app/js/extjs4
+    <unzipped-folder>/web-app/js/extjs
 
 5: Attention
 

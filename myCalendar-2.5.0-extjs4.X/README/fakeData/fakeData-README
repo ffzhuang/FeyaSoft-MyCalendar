@@ -23,12 +23,18 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+///////////////////////////////////////////////////////////////////////////////
+Notes: This method just let your have a quick view about myCalendar function.
+       You can not save the event. We just hard code the json data for quick
+       start application.
+///////////////////////////////////////////////////////////////////////////////
+
 1: FakeData will provide your a quick way to start myCalendar if you do not have
    php, grails env. Download the src package and put in your directory
 
 2: Download extjs 4.x from http://www.extjs.com and put it into:
 
-    <unzipped-folder>/web-app/js/extjs4
+    <unzipped-folder>/web-app/js/extjs
 
 3: Start application server, for example Tomcat. Point it to this project
 
@@ -48,6 +54,8 @@
 7: And a new folder, web-app/fakeData which is used to have the init json data.
 
 8: A new index html file is added: web_app/index_fakeData.html
+
+
 
 
 

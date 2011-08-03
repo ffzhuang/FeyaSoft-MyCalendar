@@ -34,7 +34,6 @@ Ext.ux.calendar.CONST = {
      */
     SHOW_LANGUAGE_MENU:true,
     
-    BLANK_IMAGE_URL:'js/extjs4/examples/sandbox/images/s.gif',
     /*
      *define the main path of myCalendar
      */
@@ -46,7 +45,7 @@ Ext.ux.calendar.CONST = {
     /*
      *define the multi-language path of EXT
      */
-    EXT_LANGUAGE_PATH:'js/extjs4/locale/',
+    EXT_LANGUAGE_PATH:'js/extjs/locale/',
     /*
      * define the some url here for datasource
      */

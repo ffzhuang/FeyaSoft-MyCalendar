@@ -55,11 +55,9 @@ Ext.ux.calendar.popup.ExpirePopup = function(config){
     );
     this.tpl.compile();
 
-    this.viewpanel = new Ext.Panel({
+    this.viewpanel = new Ext.Container({
         region:'center',
-        autoScroll:true,
-        bodyStyle:'background:transparent;',
-        border:false
+        autoScroll:true        
     });
 
     this.hideCB = new Ext.form.Checkbox({
@@ -91,10 +89,10 @@ Ext.ux.calendar.popup.ExpirePopup = function(config){
         items:[
             this.viewpanel,
             {
-                border:false,
+                xtype:'container',
                 region:'south',
                 height:25,
-                bodyStyle:'background:transparent;padding:5px;',
+                style:'background:transparent;padding:5px;',
                 items:[this.hideCB]
             }
         ]
@@ -118,7 +116,7 @@ Ext.extend(Ext.ux.calendar.popup.ExpirePopup, Ext.Window, {
     onBodyClickFn:function(e){
         var target = e.getTarget();
         var tgEl = Ext.get(target);
-        if(tgEl.hasClass('x-calendar-edit-event')){
+        if(tgEl.hasCls('x-calendar-edit-event')){
             var eh = this.ehandler;
             var cc = eh.mainPanel.calendarContainer;
             var cview = cc.currentView;
@@ -201,14 +199,14 @@ Ext.extend(Ext.ux.calendar.popup.ExpirePopup, Ext.Window, {
         return false;
     },
 
-    popup:function(events){
+    popup:function(events){    	
         var eh = this.ehandler;        
         var lan = Ext.ux.calendar.Mask.ExpirePopup;
         var now = new Date();        
         for(var i = 0, len = events.length; i < len; i++){
             var event = events[i];            
-            var time = Date.parseDate(event.endDate, 'Y-m-d H:i');
-            var left = Math.round(now.getElapsed(time)/60000);            
+            var time = Ext.Date.parseDate(event.endDate, 'Y-m-d H:i');
+            var left = Math.round(Ext.Date.getElapsed(now, time)/60000);            
             var hour = Math.floor(left/60);
             var minute = left%60;
             event['subject'] = event['subject'] || lan['untitled'];
@@ -230,15 +228,13 @@ Ext.extend(Ext.ux.calendar.popup.ExpirePopup, Ext.Window, {
             this.expand();
             this.changeTool('down');
             var taskBar = Ext.get('ux-taskbar');
+            var el = this.getEl();
             if(taskBar){
-                this.el.alignTo(taskBar, "br-tr", [ -1, -1]);
+                el.alignTo(taskBar, "br-tr", [ -1, -1]);
             }else{
-                this.el.alignTo(Ext.getBody(), "br-br", [ -10, -10]);
-            }
-            this.el.slideIn('b', {
-                duration:.7
-            });
-        }
+                el.alignTo(Ext.getBody(), "br-br", [ -10, -10]);
+            }                
+        }        
     },
 
     onShowFn:function(p){
@@ -246,8 +242,9 @@ Ext.extend(Ext.ux.calendar.popup.ExpirePopup, Ext.Window, {
         if(0 < len){
             this.setTitle(Ext.ux.calendar.Mask.ExpirePopup['title']+'('+len+')');
             var html = this.tpl.apply(this.activedEvents);
-            this.viewpanel.body.update(html);
-            this.viewpanel.body.highlight('#c3daf9', {block:true});
+            var el = this.viewpanel.getEl();
+            el.update(html);
+            el.highlight('#c3daf9', {block:true});
         }else{
             this.hide();
         }

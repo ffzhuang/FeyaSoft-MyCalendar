@@ -34,19 +34,19 @@ Ext.ux.calendar.CONST = {
      *
      */
     SHOW_LANGUAGE_MENU:true,
-    BLANK_IMAGE_URL:'/myCalendar/js/extjs4/examples/sandbox/images/s.gif',
+        
     /*
      *define the main path of myCalendar
      */
-    MAIN_PATH:'/myCalendar/js/feyaSoft/calendar/',
+    MAIN_PATH:'js/feyaSoft/calendar/',
     /*
      *define the multi-language path of myCalendar
      */
-    CALENDAR_LANGUAGE_PATH:'/myCalendar/js/feyaSoft/calendar/multi-language/',
+    CALENDAR_LANGUAGE_PATH:'js/feyaSoft/calendar/multi-language/',
     /*
      *define the multi-language path of EXT
      */
-    EXT_LANGUAGE_PATH:'/myCalendar/js/extjs4/locale/',
+    EXT_LANGUAGE_PATH:'js/extjs/locale/',
     /*
      * define the some url here for datasource
      */

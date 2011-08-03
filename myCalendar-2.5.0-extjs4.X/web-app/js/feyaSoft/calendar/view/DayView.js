@@ -26,6 +26,8 @@ Ext.ns("Ext.ux.calendar.view");
 
 Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
     
+	bodyStyle : 'background:none;',
+	
     createByDblclick:false,
 
     hideInactiveRow:false,
@@ -247,7 +249,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
                 pbk.setStyle('background-color', 'white');
             }
         }
-        var flag = (t!=undefined&&false != Ext.type(t));
+        var flag = (t!=undefined&&false != Ext.ux.calendar.Mask.typeOf(t));
         if(flag){
             var pbk = Ext.get(this.id+'-x-dayview-bg-0-'+t);
             if(pbk){
@@ -376,7 +378,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
         var event = coverEl.bindEvent;
         var col = coverEl.col;        
         var nol = coverEl.nol;
-        if(nol==undefined||false == Ext.type(nol)){
+        if(nol==undefined||false == Ext.ux.calendar.Mask.typeOf(nol)){
             nol = col;
             coverEl.nol = nol;
         }
@@ -397,7 +399,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
             event.eday =  Ext.Date.format(day,'Y-m-d');            
         }        
         if(nol != col || event.startRow != event.oldStartRow || event.endRow !=  event.oldEndRow){
-            if('string' == Ext.type(oevent.repeatType) && 'string' == Ext.type(event.repeatType)){                
+            if('string' == Ext.ux.calendar.Mask.typeOf(oevent.repeatType) && 'string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){                
                 event.repeatType = oevent.repeatType;
                 eh.updateEvent(event, cview, null, oevent);
             }else{
@@ -416,7 +418,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
         eh.floating = false;
         var event = eventEl.bindEvent;
         if(event.endRow != event.oldEndRow){
-            if('string' == Ext.type(event.repeatType)){
+            if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                 eh.updateEvent(event, this, eventEl.col);
             }else{
                 var oevent = Ext.apply({}, event);
@@ -1008,7 +1010,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
                     event.eday =   Ext.Date.format(Ext.Date.add(date,Ext.Date.DAY, dnum),'Y-m-d');
                     event.day = day;
                     delete(cview.startPos);
-                    if('string' == Ext.type(event.repeatType)){
+                    if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                         eh.updateEvent(event, cview, spos.y);
                     }else{
                         event.repeatType = 'exception';
@@ -1378,7 +1380,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
     
     cleanup:function(col, pool){
         if(!pool){
-            if(col==undefined||false == Ext.type(col)){
+            if(col==undefined||false == Ext.ux.calendar.Mask.typeOf(col)){
                 for(var i = 0; i < this.rowCount; i++){
                     for(var j = 0; j < this.dayNum; j++){
                         var El = Ext.get(this.id+'-x-dayview-viewer-'+i+'-'+j);

@@ -11,9 +11,9 @@ MyCalendar in a commercial prodcution (closed source code), you have to buy a
 commercial license. Before downloading the source code, please be sure you have
 READ and UNDERSTOOD the license.
 
-We do provide the different backend code for your to quick start using myCalendar.
-For the easier one, you can choose fakeData, please go to
-<README/fakeData> folder and follow fakeData-README to process.
+We do provide the different backend code for your to quick merge myCalendar to
+your existing application. For the easier one, you can choose fakeData, please
+go to <README/fakeData> folder and follow fakeData-README to process.
 
 For more information, please visit: http://www.cubedrive.com/myCalendar
 or email us @ info@feyasoft.com

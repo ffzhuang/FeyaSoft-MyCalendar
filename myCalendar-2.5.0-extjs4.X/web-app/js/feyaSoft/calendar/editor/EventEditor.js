@@ -94,6 +94,7 @@ Ext.ux.calendar.editor.EventEditor = function(config){
 	});
 
 	Ext.ux.calendar.editor.EventEditor.superclass.constructor.call(this, {  
+		bodyStyle: 'padding:5px 5px 10px 15px;',
 		items:[
 			this.timeField,
             this.subjectField,
@@ -220,7 +221,7 @@ Ext.extend(Ext.ux.calendar.editor.EventEditor, Ext.form.FormPanel, {
 		var eh = cview.ehandler;
 		var col = coverEl.col;        
 		if(coverEl){                        
-            if('string' == Ext.type(be.repeatType)){
+            if('string' == Ext.ux.calendar.Mask.typeOf(be.repeatType)){
                 eh.freeEventEl(coverEl);
                 eh.deleteEvent(be, cview, col);
             }else{                
@@ -271,17 +272,17 @@ Ext.extend(Ext.ux.calendar.editor.EventEditor, Ext.form.FormPanel, {
                 event.calendarId = this.calendarField.getValue();
                 event.color = eh.calendarSet[event.calendarId].color;                
 		        if('add' == this.action){                    
-		        	if('string' == Ext.type(event.repeatType)){
+		        	if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                         eh.createEvent(event, cview);
                     }else{
                         eh.createRepeatEvent(event, cview);
                     }
 		        }else if('update' == this.action){
                     if(!Ext.ux.calendar.Mask.isEqualObj(oevent, event)){
-                        if('string' == Ext.type(oevent.repeatType) && 'string' == Ext.type(event.repeatType)){
+                        if('string' == Ext.ux.calendar.Mask.typeOf(oevent.repeatType) && 'string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                             eh.updateEvent(event, cview, null, oevent, this.noLayout);
                         }else{
-                            if('string' != Ext.type(oevent.repeatType)){
+                            if('string' != Ext.ux.calendar.Mask.typeOf(oevent.repeatType)){
                                 /*
                                  * need ask user to choose apply all or just current one
                                  */
@@ -371,12 +372,12 @@ Ext.extend(Ext.ux.calendar.editor.EventEditor, Ext.form.FormPanel, {
         var lan = Ext.ux.calendar.Mask.Editor;
 		if('add' == this.action){            
 			this.deleteBtn.disable();
-            this.setIconCls('x-event-editor-title-add');
+            this.setIconCls('icon_feyaCalendar_event_add');
             this.setTitle(lan['new.title']);
 		}else{
 			this.deleteBtn.enable();
             this.setTitle(lan['edit.title']);
-            this.setIconCls('x-event-editor-title-edit');
+            this.setIconCls('icon_feyaCalendar_event_edit');
 		}  
 		var d=this.adjustXY(this.bindEl)
         this.showAt(this.adjustXY(this.bindEl));

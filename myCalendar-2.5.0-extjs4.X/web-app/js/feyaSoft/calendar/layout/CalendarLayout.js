@@ -339,7 +339,7 @@ Ext.extend(Ext.ux.calendar.CalendarLayout, Ext.util.Observable, {
                     var colNum = cview.colNum || cview.dayNum;
                     var sd = eh.getStartDateInWeek(cd, cview);
                     sday =  Ext.Date.format(sd,'Y-m-d');
-                    eday = Ext.Date.format( Ext.Date.add(sd,Date.DAY, colNum-1),'Y-m-d');
+                    eday = Ext.Date.format( Ext.Date.add(sd, Ext.Date.DAY, colNum-1),'Y-m-d');
                 }
             }
         }        
@@ -583,7 +583,7 @@ Ext.extend(Ext.ux.calendar.CalendarLayout, Ext.util.Observable, {
                     var span = row[j].span;
                     var e = row[j].event;
                     var html;
-                    if('number' == Ext.type(e)){
+                    if('number' == Ext.ux.calendar.Mask.typeOf(e)){
                         var day = Ext.Date.format(daySet[w*dayNum+j+si],'Y-m-d');
                         html = '<div class="x-event-more-ct">' +
                         '<u><b name="'+day+'" class="x-event-more">&nbsp;&nbsp;&nbsp;&nbsp;'+e+' '+lan['more']+'...</b></u>' +

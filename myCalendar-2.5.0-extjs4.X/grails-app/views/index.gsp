@@ -12,8 +12,9 @@
     <meta name="robots" content="all" />
     <meta name="author" content="FeyaSoft Inc." >
 
-    <link rel="stylesheet" href="${createLinkTo(dir:'js',file:'extjs4/resources/css/ext-all.css')}"></link>
-    <script type="text/javascript" src="${createLinkTo(dir:'js',file:'extjs4/ext-all.js')}"></script>
+    <link rel="stylesheet" href="${createLinkTo(dir:'js',file:'extjs/resources/css/ext-all.css')}"></link>
+    <link rel="stylesheet" href="${createLinkTo(dir:'js/feyaSoft/calendar/css',file:'calendar.css')}"></link>
+    <script type="text/javascript" src="${createLinkTo(dir:'js',file:'extjs/ext-all-debug.js')}"></script>
 
     <g:javascript library="feyaSoft/calendar/util/LabelField"/>
     <g:javascript library="feyaSoft/calendar/util/DatePicker"/>
@@ -45,10 +46,8 @@
     <g:javascript library="feyaSoft/calendar/CalendarContainer"/>
     <g:javascript library="feyaSoft/calendar/WestPanel"/>
     <g:javascript library="feyaSoft/calendar/MainPanel"/>
-    <g:javascript library="feyaSoft/calendar/Viewer"/>
-    
-    <link rel="stylesheet" href="${createLinkTo(dir:'js/feyaSoft/calendar/css',file:'calendar.css')}"></link>
-   
+    <g:javascript library="feyaSoft/calendar/CalendarWin"/>
+    <g:javascript library="feyaSoft/calendar/Viewer"/>           
 </head>
 <body>
 

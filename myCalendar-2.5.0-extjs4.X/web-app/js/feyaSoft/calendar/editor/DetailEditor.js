@@ -133,6 +133,7 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
     this.alertCB = this.alertCB || new Ext.form.Checkbox({
         labelSeparator:'',
         anchor:'95%',
+        style:'padding-left:105px;',
         boxLabel:lan['alertCB.label'],
         handler:this.onAlertCheckFn,
         scope:this
@@ -140,6 +141,7 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
 
     this.lockCB = this.lockCB || new Ext.form.Checkbox({
         labelSeparator:'',
+        style:'padding-left:105px;',
         anchor:'95%',
         boxLabel:lan['lockCB.label']
     });
@@ -167,40 +169,33 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
 		scope:this
 	});
 
-    this.timepanel = this.timepanel || new Ext.Panel({
-        border:false,
-        layout:'column',
-        baseCls: 'x-panel-body-default-framed',
-        bodyStyle:'overflow:hidden;',
+    this.timepanel = this.timepanel || new Ext.Container({        
+        layout:'column',        
+        style:'overflow:hidden;padding-bottom:3px;',
         items:[{
-            columnWidth:.32,
-            border:false,
-            layout:'anchor',
-            baseCls: 'x-panel-body-default-framed',
+        	xtype: 'container',
+            columnWidth:.27,            
+            layout:'anchor',            
             items:[this.startDayField]
         }, {
             columnWidth:.15,
-            border:false,
-            baseCls: 'x-panel-body-default-framed',
+            xtype: 'container',            
             layout:'anchor',
             items:[this.startTimeField]
         }, {
-            columnWidth:.22,
-            baseCls: 'x-panel-body-default-framed',
-            border:false,
+            columnWidth:.27,
+            xtype: 'container',
             layout:'anchor',
             labelWidth:15,
             items:[this.endDayField]
         }, {
             columnWidth:.15,
-            baseCls: 'x-panel-body-default-framed',
-            border:false,
+            xtype: 'container',
             layout:'anchor',
             items:[this.endTimeField]
         }, {
             columnWidth:.15,
-            baseCls: 'x-panel-body-default-framed',
-            border:false,            
+            xtype: 'container',    
             items:[this.wholeField]
         }]
     });
@@ -224,10 +219,9 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
     });
     this.repeatIntervalField.on('valid', this.onRepeatIntervalValidFn, this);
 
-    this.intervalUnitLabel = this.intervalUnitLabel || new Ext.util.LabelField({
-        hideLabel:true,
+    this.intervalUnitLabel = this.intervalUnitLabel || new Ext.form.Label({        
         width:200,
-        labelSeparator:''        
+        style:'padding-left:10px;line-height:22px;'
     });
 
     this.repeatStartField = this.repeatStartField || new Ext.form.DateField({
@@ -328,10 +322,9 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
         anchor:'60%'
     });
 
-    this.alertContainer = this.alertContainer || new Ext.Panel({
+    this.alertContainer = this.alertContainer || new Ext.Container({
         hidden:!(Ext.ux.calendar.CONST.VERSION >= '2.0.5'),
-        sender:this,
-        border:false,
+        sender:this,        
         autoHeight:true,
         style:'padding: 0 0 0 100px;',
         buttons:[{
@@ -359,9 +352,7 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
 		]		
 	});
 
-    this.repeatInfoPanel = this.repeatInfoPanel || new Ext.Panel({
-        border:false,    
-        baseCls: 'x-panel-body-default-framed',
+    this.repeatInfoPanel = this.repeatInfoPanel || new Ext.Container({        
         html:'<div class="x-repeat-event-info-ct"><div class="x-repeat-event-info"></div></div>'
     });
 
@@ -377,105 +368,83 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
     }
     this.repeatForm = this.repeatForm || new Ext.form.FormPanel({
         border:false,
-		bodyStyle:'padding:20px;',
-		//baseCls: 'x-panel-body-default-framed',
+		bodyStyle:'padding:10px;',		
         frame:true,
         autoHeight:true,
 		labelWidth:80,
 		items:[
             this.repeatTypeField,
-            {          
-            	
-                border:true,                
-                style:'padding-left:85px;',
-                baseCls: 'x-panel-body-default-framed',
+            {                      	       
+            	xtype: 'container',
+                style:'padding-left:105px;',                
                 layout:'hbox',
                 items:[{
-                    border:true,
-                    baseCls: 'x-panel-body-default-framed',
-                   // columnWidth:.25,
-                    //layout:'anchor' ,
+                    xtype:'container',
                     items:[this.repeatIntervalField]
                 }, {
-                    border:true,
-                    baseCls: 'x-panel-body-default-framed',
-                    bodyStyle:'margin-top:5px;margin-left:20px;',
-                    //columnWidth:.2,                    
+                	xtype:'container',                    
                     items:[this.intervalUnitLabel]
                 }]
             },
             this.repeatInfoPanel,
             {                
-                border:false,               
-                style:'padding-left:85px;',
-                baseCls: 'x-panel-body-default-framed',
+                xtype:'container',           
+                style:'padding-left:105px;',                
                 layout:'anchor' ,
                 items:[this.weekCheckGroup]
             }, {                
-                border:false, 
-                baseCls: 'x-panel-body-default-framed',
-                style:'padding-left:85px;',
+            	xtype:'container',
+                style:'padding-left:105px;',
                 layout:'anchor' ,
                 items:[this.monthRadioGroup]
             }, {  
-            	baseCls: 'x-panel-body-default-framed',
-                border:false,
-                style:'padding-left:85px;',
+            	xtype:'container',
+                style:'padding-left:105px;',
                 layout:'column',
                 items:[{
-                    border:false,
-                    baseCls: 'x-panel-body-default-framed',
+                	xtype:'container',
                     columnWidth:.5,
                     layout:'anchor' ,
                     labelWidth:75,
                     items:[this.repeatStartField]
-                }, {
-                    border:false,
+                }, {                    
                     columnWidth:.5,
-                    baseCls: 'x-panel-body-default-framed',
+                    xtype:'container',
                     items:[
                         this.repeatNoEndRG,
                         {
-                            border:false,
-                            baseCls: 'x-panel-body-default-framed',
+                        	xtype:'container',
                             layout:'column',
                             items:[{
-                                border:false,
-                                baseCls: 'x-panel-body-default-framed',
+                            	xtype:'container',
                                 columnWidth:cws[0],
                                 items:[this.repeatEndTimeRG]
-                            }, {
-                                border:false,
+                            }, {                                
                                 columnWidth:cws[1],
-                                baseCls: 'x-panel-body-default-framed',
+                                xtype:'container',
                                 items:[this.repeatEndTimeField]
                             }, {
-                                border:false,
-                                baseCls: 'x-panel-body-default-framed',
+                            	xtype:'container',
                                 columnWidth:cws[2],
                                 layout:'anchor' ,
                                 labelWidth:95,
                                 items:[{
-                                    xtype:'textfield',
-                                    fieldLabel:lan['repeatEndTimeUnit'],
-                                    labelSeparator:'',
-                                    hidden:true
+                                    xtype:'label',
+                                    html:lan['repeatEndTimeUnit'],
+                                    style:'line-height:22px;'
                                 }]
                             }]
                         },
                         {
-                            border:false,
-                            baseCls: 'x-panel-body-default-framed',
+                        	xtype:'container',
                             layout:'column',
                             items:[{
-                            	baseCls: 'x-panel-body-default-framed',
-                                border:false,
+                            	xtype:'container',
                                 columnWidth:cws[3],
                                 items:[this.repeatEndDateRG]
                             }, {
-                            	baseCls: 'x-panel-body-default-framed',
-                            	bodyStyle:'overflow:hidden;',
-                                border:false,
+                            	xtype:'container',
+                            	style:'overflow:hidden;',                                
                                 columnWidth:cws[4],
                                 layout:'anchor' ,                                
                                 items:[this.repeatEndDateField]
@@ -509,8 +478,7 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
     this.repeatEndDateRG.on('change', this.onRepeatEndDateCheckFn, this);
 };
 
-Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, {
-    border:false,
+Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, {    
 
     autoScroll:true,    
 
@@ -565,7 +533,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
     },
 
     updateRepeatInfo:function(html){
-        var div = this.repeatInfoPanel.body.dom.firstChild.firstChild;
+        var div = this.repeatInfoPanel.getEl().dom.firstChild.firstChild;
         div.innerHTML = html;
     },
 
@@ -600,7 +568,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 items.get(3).show();
                 this.weekCheckGroup.reset();
                 var cbs = this.weekCheckGroup.items;                              
-                if('string' != Ext.type(rt)){
+                if('string' != Ext.ux.calendar.Mask.typeOf(rt)){
                     var rday = rt.rday;                    
                     for(var p in rday){                        
                         cbs.get(p-1).setValue(true);                        
@@ -613,7 +581,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 items.get(4).show();
                 this.monthRadioGroup.reset();
                 var rds = this.monthRadioGroup.items;                
-                if('string' != Ext.type(rt)){
+                if('string' != Ext.ux.calendar.Mask.typeOf(rt)){
                     var rby = rt.rby;
                     if('day' == rby){
                         rds.get(1).setValue(true);                        
@@ -627,11 +595,11 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
             this.repeatNoEndRG.checked = false;
             this.repeatEndTimeRG.checked = false;
             this.repeatEndDateRG.checked = false;
-            if('string' != Ext.type(rt)){
+            if('string' != Ext.ux.calendar.Mask.typeOf(rt)){
                 this.repeatIntervalField.setValue(rt.intervalSlot);
                 this.repeatStartField.setValue(rt.beginDay);
-                if('no' == rt.endDay){
-                    if(false != Ext.type(rt.rtime)){
+                if('no' == rt.endDay){                   	
+                    if(false != Ext.ux.calendar.Mask.typeOf(rt.rtime)){
                         this.repeatEndTimeRG.setValue(true);
                         this.repeatEndTimeField.setValue(rt.rtime)
                     }else{
@@ -731,7 +699,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
         if(all){
             data = Ext.ux.calendar.Mask.generateIntervalData(this.intervalSlot, 0, this.rowCount, this.ehandler.hourFormat);
         }else{
-            if(false == Ext.type(sIndex)){
+            if(false == Ext.ux.calendar.Mask.typeOf(sIndex)){
                 sIndex = this.activeStartRow;
             }else{
                 sIndex++;
@@ -760,7 +728,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 this.reloadEndTimeStore(v);
             }
         }
-        if(false != Ext.type(eIndex)){
+        if(false != Ext.ux.calendar.Mask.typeOf(eIndex)){
             if(this.activeEndRow >= eIndex){
                 this.endTimeField.setValue(eIndex);
             }else{
@@ -885,18 +853,18 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 event = this.handleRepeatType(event);
 
 		        if('add' == this.action){
-                    if('string' == Ext.type(event.repeatType)){
+                    if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                         eh.createEvent(event, cview);
                     }else{
                         eh.createRepeatEvent(event, cview);
                     }
 		        }else if('update' == this.action){
                     if(!Ext.ux.calendar.Mask.isEqualObj(oevent, event)){
-                        if('string' == Ext.type(oevent.repeatType) && 'string' == Ext.type(event.repeatType)){
+                        if('string' == Ext.ux.calendar.Mask.typeOf(oevent.repeatType) && 'string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                             event.repeatType = oevent.repeatType;
                             eh.updateEvent(event, cview, null, oevent, this.noLayout);
                         }else{
-                            if('string' != Ext.type(oevent.repeatType)){
+                            if('string' != Ext.ux.calendar.Mask.typeOf(oevent.repeatType)){
                                 /*
                                  * need ask user to choose apply all or just current one
                                  */
@@ -1047,7 +1015,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
             this.endDayField.setValue(bindEvent.eday);
             var v = 'no';
             var rt = bindEvent.repeatType;            
-            if(rt && 'string' != Ext.type(rt)){
+            if(rt && 'string' != Ext.ux.calendar.Mask.typeOf(rt)){
                 v = rt.rtype;
             }
             if('exception' == v){
@@ -1184,6 +1152,7 @@ Ext.ux.calendar.AlertSetting = function(config){
     
     this.deleteAlertBtn = this.deleteAlertBtn || new Ext.Button({
         text:lan['deleteAlertBtn.label'],
+        style:'margin-left:50px;',
         handler:this.onRemoveAlertFn,
         scope:this
     });
@@ -1198,21 +1167,22 @@ Ext.ux.calendar.AlertSetting = function(config){
         queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
-        allowBlank: false,
-        anchor:'99%',
+        allowBlank: false,        
         editable:false,
-        value:'popup'
+        value:'popup',
+        width: 200
 	});
     this.alertTypeField.on('select', this.onAlertTypeSelectFn, this);
 
     this.alertEarlyTimeField = this.alertEarlyTimeField || new Ext.form.NumberField({
         hideLabel:true,
-        labelSeparator:'',
-        anchor:'99%',
+        labelSeparator:'',        
         value:30,
         sender:this,
         validator:this.alertEarlyTimeValidator,
-        allowBlank:false
+        allowBlank:false,
+        style:'margin-left:10px;',
+        width: 200
     });
 
     this.alertUnitField = this.alertUnitField || new Ext.form.ComboBox({
@@ -1225,55 +1195,36 @@ Ext.ux.calendar.AlertSetting = function(config){
         queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
-        allowBlank: false,
-        anchor:'99%',
+        allowBlank: false,        
         editable:false,
-        value:'minute'
+        value:'minute',
+        style:'margin-left:10px;',
+        width: 200
 	});
     this.alertUnitField.on('select', this.onAlertUnitSelectFn, this);
 
-    this.alertEarlyField = this.alertEarlyField || new Ext.form.TextField({
-        fieldLabel:'&nbsp;'+lan['alertEarly.label'],
-        labelSeparator:'',
-        hidden:true
+    this.alertEarlyField = this.alertEarlyField || new Ext.form.Label({
+    	style: 'margin-left:10px;line-height:22px;',
+        html:'&nbsp;'+lan['alertEarly.label']
     });
 
-    Ext.ux.calendar.AlertSetting.superclass.constructor.call(this, {
-    	baseCls: 'x-panel-body-default-framed',
-    	border:false,
-         layout:'column',
-            items:[{
-                border:false,
-                columnWidth:.35,
-                baseCls: 'x-panel-body-default-framed',
-                items:[this.alertTypeField]
-            }, {
-                border:false,
-                columnWidth:.15,
-                baseCls: 'x-panel-body-default-framed',
-                items:[this.alertEarlyTimeField]
-            }, {
-                border:false,
-                columnWidth:.25,
-                baseCls: 'x-panel-body-default-framed',
-                items:[this.alertUnitField]
-            }, {
-                border:false,
-                columnWidth:.1,
-                baseCls: 'x-panel-body-default-framed',
-                items:[this.alertEarlyField]
-            }, {
-                border:false,
-                columnWidth:.15,
-                baseCls: 'x-panel-body-default-framed',
-                items:[this.deleteAlertBtn]
-            }]
+    Ext.ux.calendar.AlertSetting.superclass.constructor.call(this, {   
+    	 border:false,
+    	 bodyStyle:'background:none;',
+         layout:{
+        	 type:'hbox'
+         },
+         items:[
+             this.alertTypeField,
+             this.alertEarlyTimeField,
+             this.alertUnitField,
+             this.alertEarlyField,
+             this.deleteAlertBtn
+         ]
     });
 };
 
-Ext.extend(Ext.ux.calendar.AlertSetting, Ext.Panel, {
-    border:false,
-
+Ext.extend(Ext.ux.calendar.AlertSetting, Ext.form.FormPanel, {
     style:'padding: 0 0 0 5px;',
 
     autoHeight:true,

@@ -36,12 +36,11 @@ Ext.ux.calendar.CalendarContainer = function(config){
     this.startDate = now;
     this.endDate = now;        
 
-    if(undefined==cs.initialView||false == Ext.type(cs.initialView)){
+    if(undefined==cs.initialView || false == Ext.ux.calendar.Mask.typeOf(cs.initialView)){
         this.currentIdx = 1;
     }else{
         this.currentIdx = parseInt(cs.initialView);
-    }
-
+    }           
     this.dayView = new Ext.ux.calendar.view.DayView({
     	border:false,
         dayFormat:cs.dayFormat,
@@ -197,6 +196,7 @@ Ext.ux.calendar.CalendarContainer = function(config){
             };
         }
         this.lanMenu = new Ext.menu.Menu({
+        	minWidth: 150,
             items:items
         });
         items = [];
@@ -225,7 +225,8 @@ Ext.ux.calendar.CalendarContainer = function(config){
         handler:this.onAboutMyCalendarFn,
         scope:this
     });
-    this.moreMenu = new Ext.menu.Menu({
+    this.moreMenu = new Ext.menu.Menu({ 
+    	minWidth:200,
         items:items
     });
 
@@ -250,23 +251,19 @@ Ext.ux.calendar.CalendarContainer = function(config){
         this.detailEditor
     ];
     this.currentView = items[this.currentIdx];
-    var tobar=new Ext.Toolbar(
-    {
-   // xtype: 'toolbar',
-    //dock: 'top',
-    style:'border-bottom:1px red solid;',
-    items:[
+    var tobar=new Ext.Toolbar({   
+    	items:[
             this.backBtn, this.nextBtn, this.todayBtn, '-',
             lan['searchCriteria.text'], this.searchField, '->',
             this.refreshBtn, '-', this.dayBtn, '-', this.weekBtn, '-', this.monthBtn, '-', this.moreBtn
         ]
-}
-    )
+    });
     Ext.ux.calendar.CalendarContainer.superclass.constructor.call(this, {
         border:false,
         region:'center',
         cls:'x-calendar-container',
         layout:'card',
+        bodyStyle: 'border-top:none;background:none;',
         layoutConfig:{
             deferredRender:true
         },

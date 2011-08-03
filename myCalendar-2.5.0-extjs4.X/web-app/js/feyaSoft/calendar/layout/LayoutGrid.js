@@ -93,7 +93,7 @@ Ext.ux.calendar.LayoutGrid.prototype = {
         var i, len, arr = [];
         for(i = 0, len = this.heventList.length; i < len; i++){
             var event = this.heventList[i];
-            if('string' == Ext.type(event.repeatType)){
+            if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                arr.push(event);
             }
         }
@@ -101,7 +101,7 @@ Ext.ux.calendar.LayoutGrid.prototype = {
         arr = [];
         for(i = 0, len = eventList.length; i < len; i++){
 			var event = eventList[i];
-			if('string' == Ext.type(event.repeatType)){
+			if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
 				arr.push(event);
 			}
 		}

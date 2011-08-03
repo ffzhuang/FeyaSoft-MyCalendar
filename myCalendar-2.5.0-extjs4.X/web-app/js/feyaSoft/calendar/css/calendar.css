@@ -1,6 +1,4 @@
-.x-dayview-pool, .x-dayview-header, .x-calendar-container, .x-calendar-west, .x-monthview-header {
-	background:rgb(210,220,255);
-}
+
 .x-calendar-link {
     cursor:pointer;
 }
@@ -14,15 +12,6 @@
     font-family:arial;
 }
 
-.x-calendar-west .x-panel-header-noborder{
-    background:none;
-    background-image:none;
-    border:none;
-}
-.x-calendar-west .x-panel-body {
-	background:none;
-	background-image:none;
-}
 .x-calendar-container .x-toolbar {
 	background:none;
 	border: none;
@@ -94,8 +83,7 @@
     height:16px;
 }
 .x-monthview-lefter {
-    vertical-align:top;
-    background-color:#D2DCFF;
+    vertical-align:top;    
     width:25px;
 }
 .x-monthview-lefter-inner {
@@ -165,6 +153,7 @@
 .x-dayview-ct {
     position:relative;
 }
+
 .x-dayview-bg-cell {
 	vertical-align:top;
 	border-right:3px double #EBEBEB;
@@ -205,8 +194,7 @@
 }
 .x-dayview-pool {
     overflow:hidden;
-	border-bottom:1px solid #ebebeb;
-    background-color:#D2DCFF;
+	border-bottom:1px solid #ebebeb;    
     position:relative;
 }
 .x-dayview-pool-cell-rest {
@@ -1232,36 +1220,3 @@
 .icon_feyaCalendar_feyasoft{background-image:url(../image/feyasoft-icon.png) !important;}
 .icon-add-event {background:url( ../image/tag_blue_add.png ) no-repeat !important;}
 .icon-edit-event {background-image:url( ../image/tag_blue_edit.png ) !important;}
-
-
-.x-calendar-container .x-panel-body-default {
-	border-color: none;
-	color: black;
-	border-width: none;
-	border-style: none
-}
-
-.x-feyaCalendar-setting .x-tab-bar-body {
-	border-color: none;
-	border-width: none;
-	border-style: none
-}
-
-.x-feyaCalendar-setting .x-panel-default-framed {
-	border-color: none;
-	border-width: none;
-	border-style: none
-}
-
-.x-feyaCalendar-setting .x-tab-default-top {
-	border-color: none;
-	border-width: none;
-	border-style: none
-}
-
-.x-west-datepicker .x-datepicker-header {
-	/*background-color: red;*/
-    -moz-opacity: 0.6;
-    opacity:.6;
-    filter: alpha(opacity=60);
-}

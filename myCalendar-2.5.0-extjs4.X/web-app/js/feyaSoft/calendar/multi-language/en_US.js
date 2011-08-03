@@ -24,7 +24,9 @@
  */
 Ext.ns("Ext.ux.calendar");
 
-Ext.ux.calendar.Mask = {
+Ext.ux.calendar.Language = {
+
+    // please help to transfer words after :. Thanks
     'CalendarWin':{
         'title':'FeyaSoft MyCalendar 2.5.0',
         'loadMask.msg':'Please wait...'
@@ -33,7 +35,7 @@ Ext.ux.calendar.Mask = {
     'MainPanel':{
         'loadMask.msg':'Please wait...'
     },
-
+    
     'SharingPopup':{
         'title':'Sharing Calendar'
     },
@@ -50,7 +52,7 @@ Ext.ux.calendar.Mask = {
         'moreMenu.setting.text':'Setting',
         'moreMenu.about.text':'About FeyaSoft MyCalendar',
         'moreBtn.text':'More',
-        'searchCriteria.text':'Search',
+        'searchCriteria.text':'Search',        
         'moreMenu.showAlert.text':'Activate Alert Function',
         'moreMenu.language.text':'Language Setting'
     },
@@ -126,7 +128,7 @@ Ext.ux.calendar.Mask = {
         'repeatEndDayInvalid':'The repeat end date should not be earlier than repeat start date',
         'repeatTimeInvalid':'This value should be a positive integer!'
     },
-
+    
     'CalendarEditor':{
         'new.title':'New Calendar',
         'edit.title':'Edit Calendar',
@@ -143,7 +145,7 @@ Ext.ux.calendar.Mask = {
         'shareColumns.remove':'Remove',
         'userField.emptyText':'Please input username or email address'
     },
-
+    
     'ExpirePopup':{
         'hideCB.label':'Don\'t popup any more',
         'title':'Alerted Events',
@@ -160,7 +162,7 @@ Ext.ux.calendar.Mask = {
     },
 
     'SettingPopup':{
-        'title':'feyaCalendar Setting',
+        'title':'MyCalendar Setting',
         'hourFormatField.label':'Hour Format',
         'dayFormatField.label':'Day Format of DayView',
         'weekFormatField.label':'Day Format of WeekView',
@@ -228,7 +230,7 @@ Ext.ux.calendar.Mask = {
         '24Hours':'24 Hours',
         'ar': 'Arabic',
         'de': 'German',
-        'en':'American English',
+        'en_US':'American English',
         'es': 'Spanish',
         'fr': 'Français',
         'it': 'Italiano',
@@ -278,297 +280,10 @@ Ext.ux.calendar.Mask = {
         ['year', 'Yearly']
     ],
 
-    colors:['668CD9', 'D96666', '59BFB3', 'F2A442', '4CB052', 'B373B3'],
-
-    colorIndex:["blue", "red", "cyan", "orange", "green", "purple"],
-
-    getMinute:function(t, u){
-        t = parseInt(t);
-        if('hour' == u){
-            t = t*60;
-        }else if('day' == u){
-            t = t*60*24;
-        }else if('week' == u){
-            t = t*60*24*7;
-        }
-        return t;
-    },
-
-    getColorByIndex:function(colorIndex){
-        var mask = Ext.ux.calendar.Mask;
-        for(var i = 0, len = mask.colorIndex.length; i < len; i++){
-            if(colorIndex == mask.colorIndex[i]){
-                return mask.colors[i];
-            }
-        }
-        return null;
-    },
-
-    getIndexByColor:function(color){
-        var mask = Ext.ux.calendar.Mask;
-        for(var i = 0, len = mask.colors.length; i < len; i++){
-            if(color == mask.colors[i]){
-                return mask.colorIndex[i];
-            }
-        }
-        return null;
-    },
-	
-    getRepeatTypeStore:function() {
-        var store = new Ext.data.SimpleStore({
-                fields:['value', 'display'],
-                data:Ext.ux.calendar.Mask.repeatType
-        });
-        return store;
-    },
-	getEventStore : function(url,pageSize) {
-		var store = Ext.create('Ext.data.Store', {
-					//sorters : ['ymd'],
-					pageSize : pageSize,
-					proxy : {
-						type : 'ajax',
-						url : url,
-						reader : {
-							type : 'json',
-							root : 'results',
-							totalProperty : 'total'
-						}
-					},
-					groupField : 'ymd',
-					fields :[{name: "id"},
-			                {name: "calendarId"},
-			                {name: "startTime"},
-			                {name: "endTime"},
-			                {name: "subject"},
-			                {name: "description"},
-			                {name: "ymd"},
-			                {name: "eymd"},
-			                {name: "color"},
-			                {name: "isShared"},                
-			                {name: "alertFlag"},
-			                {name: "locked"},
-			                {name: "repeatType"}]
-					
-				})
-		return store;
-	},
-    getCalendarStore:function(){
-        var store = new Ext.data.SimpleStore({
-                fields:['id', 'title', 'description', 'color'],
-                data:[]
-        });
-        return store;
-    },
-    
-    getHourFormatStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-    	var store = new Ext.data.SimpleStore({
-                fields:['id', 'text'],
-                data:[
-                        ['12', lan['12Hours']],
-                        ['24', lan['24Hours']]
-                ]
-        });
-        return store;
-    },
-
-    getLanguageConfig:function(){
-        /*
-         * you can change the data here, add/substract languages. But notice you need have the related file under multi-language folder first;
-         * For example, ['en', 'American English'], this means there is a file named en_US.js under multi-language folder
-         */
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var data = [
-            ['en', lan['en']],
-            ['es', lan['es']],
-            ['de', lan['de']],
-            ['fr', lan['fr']],
-            ['it', lan['it']],
-            ['lt', lan['lt']],
-            ['nl', lan['nl']],
-            ['pl', lan['pl']],
-            ['pt', lan['pt']],
-            ['zh_CN', lan['zh_CN']]
-        ];
-        var store = new Ext.data.SimpleStore({
-                fields:['name', 'display'],
-                data:data
-        });
-
-        return {
-            data:data,
-            store:store
-        };
-    },
-
-    parseHM:function(hm){
-        var h, m;
-        var parts = hm.split(':');
-        h = parts[0];
-        if('0' == h.charAt(0)){
-            h = h.charAt(1);
-        }
-        h = parseInt(h);
-        m = parts[1];
-        if('0' == m.charAt(0)){
-            m = m.charAt(1);
-        }
-        m = parseInt(m);
-        return {
-            h:h,
-            m:m
-        };
-    },
-
-    calculateActiveRow:function(cs){        
-        var obj = {};
-        var hm = this.parseHM(cs.activeStartTime);
-        var st = hm.h*60+hm.m;
-        hm = this.parseHM(cs.activeEndTime);
-        var et = hm.h*60+hm.m;
-        obj.intervalSlot = parseInt(cs.intervalSlot);
-        obj.rowCount = 24*60/obj.intervalSlot;
-        obj.activeStartRow = Math.floor(st/obj.intervalSlot);
-        obj.activeEndRow = Math.floor(et/obj.intervalSlot);
-        obj.numInHour = Math.floor(60/obj.intervalSlot);
-        delete(cs['id']);
-        delete(cs['class']); 
-        obj = Ext.apply(obj, cs);
-        obj.startDay = parseInt(obj.startDay);        
-        obj.startRow = 0;
-        obj.endRow = obj.rowCount;
-        if(obj.hideInactiveRow){
-            obj.startRow = obj.activeStartRow;
-            obj.endRow = obj.activeEndRow;
-        }        
-        return obj;
-    },
-
-    getTimeStore:function(){
-        var store = new Ext.data.SimpleStore({
-			fields:['row', 'hour'],
-			data:[]
-		});
-		return store;
-    },
-
-    getHMFromRow:function(intervalSlot, row, hourFormat){
-        var m = intervalSlot*row;
-        var h = Math.floor(m/60);
-        m = m%60;
-        if(10 > m){
-            m = '0'+m;
-        }
-        if(10 > h){
-            h = '0'+h;
-        }
-        var s = h+':'+m;
-        if('12' == hourFormat){
-            var dt = Ext.Date.parseDate(h+':'+m, 'H:i');
-            s =  Ext.Date.format(dt,'h:i A');
-        }
-        return s;
-    },
-
-    generateIntervalData:function(intervalSlot, start, end, hourFormat){
-        var num = Math.floor(24*60/intervalSlot);
-        start = start || 0;
-        end = end || num;
-        var data = [];
-        for(var i = start; i <= end; i++){
-            var o = [];
-            o.push(i);
-            var s = this.getHMFromRow(intervalSlot, i, hourFormat);
-            o.push(s);
-            data.push(o);
-        }
-        return data;
-    },
-
-    getIntervalFromRow:function(intervalSlot, row, hourFormat){
-        var m = intervalSlot*row;
-        var h = Math.floor(m/60);
-        m = m%60;
-        if(10 > m){
-            m = '0'+m;
-        }
-        if(10 > h){
-            h = '0'+h;
-        }
-        var s = h+':'+m;
-        if('12' == hourFormat){
-            var dt = Ext.Date.parseDate(h+':'+m, 'H:i');
-            s = Ext.Date.format(dt,'h:i A');
-        }
-        return s;
-    },
-
-    getRowFromHM:function(hm, intervalSlot){
-        if('23:59' == hm){
-            hm = '24:00';
-        }
-        hm = Ext.ux.calendar.Mask.parseHM(hm);
-        var row = Math.floor(hm.h*60/intervalSlot+hm.m/intervalSlot);
-        return row;
-    },
-
-    getEDStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:[
-                [true, lan['enable']],
-                [false, lan['disable']]
-            ]
-		});
-		return store;
-    },
-
-    getStartDayStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:[
-                [0, lan['sunday']],
-                [1, lan['monday']]
-            ]
-		});
-		return store;
-    },
-
-    getIntervalStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:[
-                [10, '10 '+lan['minute']],
-                [15, '15 '+lan['minute']],
-                [20, '20 '+lan['minute']],
-                [30, '30 '+lan['minute']],
-                [60, '60 '+lan['minute']]
-            ]
-		});
-		return store;
-    },
-
-    getDayOffset:function(sday, eday){
-    	var vDate=Ext.Date;
-        if(!(sday instanceof Date)){
-            sday = vDate.parseDate(sday, 'Y-m-d');
-        }
-        if(!(eday instanceof Date)){
-            eday = vDate.parseDate(eday, 'Y-m-d');
-        }
-        var offset =  vDate.getElapsed(sday,eday);
-        offset = Math.round(offset/(3600000*24));
-        return offset;
-    },
-
-    getWeekDayInMonth:function(date){   
-    	var vDate=Ext.Date;
-        var d =  vDate.format(date,'d');
+    getWeekDayInMonth:function(date){
+        var d = date.format('d');
         var w = Math.floor(d/7)+1;
-        var wd =  vDate.format(date,'l');
+        var wd = date.format('l');
         var str = 'the '+w;
         if(1 == w){
             str += 'st';
@@ -610,106 +325,7 @@ Ext.ux.calendar.Mask = {
             }
         }
         return str;
-    },
-
-    getPermitStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:lan['permitData']
-		});
-		return store;
-    },
-
-    getUserStore:function(){        
-        var store = new Ext.data.Store({
-            proxy:new Ext.data.HttpProxy({
-                url:Ext.ux.calendar.CONST.listUserURL
-            }),
-			reader:new Ext.data.JsonReader({
-                root: 'results',
-                id: 'id',
-                totalProperty: 'total'
-            }, [
-                {name: "id"},
-                {name: "username"},
-                {name: "email"}
-            ])
-		});
-		return store;
-    },
-
-    getAlertTypeStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:lan['alertType']
-		});
-		return store;
-    },
-
-    getAlertUnitStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:lan['popupAlertUnit']
-		});
-		return store;
-    },
-
-    getInitialViewStore:function(){
-        var lan = Ext.ux.calendar.Mask.Mask;
-        var store = new Ext.data.SimpleStore({
-			fields:['value', 'display'],
-			data:lan['initialView']
-		});
-		return store;
-    },
-
-    cleanObj:function(o){
-        o = Ext.apply({}, o);
-        var n = {};
-        for(var p in o){
-            var f = Ext.ux.calendar.Mask.typeOf(o[p]);
-            if(false == f){
-                delete(o[p]);
-            }else if('string' == f){
-                o[p] = o[p].trim();
-                if('' == o[p]){
-                    delete(o[p]);
-                }
-            }else if('boolean' == f){
-                if(false == o[p]){
-                    delete(o[p]);
-                }
-            }
-            if(o[p]){
-                n[p] = o[p];
-            }
-        }
-        return n;
-    },
-
-    isEqualObj:function(o, n){
-        try{
-            o = Ext.ux.calendar.Mask.cleanObj(o);
-            n = Ext.ux.calendar.Mask.cleanObj(n);            
-            return Ext.encode(o) == Ext.encode(n);
-        }catch(e){
-            return false;
-        }
-    },
-    
-    includeIsClass : function(className, merclass) {
-		return className
-				&& (' ' + className + ' ').indexOf(' ' + merclass + ' ') != -1;
-	},
-	
-	typeOf : function(v){	
-		if(undefined === v || null === v){
-			return false;
-		}
-		var t = Ext.type(v);		
-		return t;
-	}
+    }
 };
+
+Ext.apply(Ext.ux.calendar.Mask, Ext.ux.calendar.Language);

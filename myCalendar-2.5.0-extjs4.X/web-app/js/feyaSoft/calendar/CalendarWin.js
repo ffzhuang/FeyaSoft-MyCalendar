@@ -25,14 +25,19 @@
 Ext.ns('Ext.ux.calendar');
 
 Ext.ux.calendar.CalendarWin = Ext.extend(Ext.Window, {    	    
-    initComponent: function(){        
+	initComponent: function(){        
         this.mainPanel = new Ext.ux.calendar.MainPanel({
         	datasource:this.datasource,
             calendarSetting:this.calendarSetting,
             userId:this.userId
         });
-        Ext.ux.calendar.CalendarWin.superclass.initComponent.call(Ext.apply(this, {            
+        Ext.ux.calendar.CalendarWin.superclass.initComponent.call(Ext.apply(this, {
+        	title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
+		    iconCls : 'icon_feyaCalendar_calendar',		    
+		    style:'padding:0px;margin:0px;',
             layout:'fit',
+            width:(Ext.getBody()).getWidth(),
+            height:(Ext.getBody()).getHeight(),
             items:[this.mainPanel]
         }));                        
     } 

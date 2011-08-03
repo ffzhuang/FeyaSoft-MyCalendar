@@ -22,7 +22,7 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-Ext.onReady(function(){         
+Ext.onReady(function(){        
     Ext.QuickTips.init();
     var wait = new Ext.LoadMask(document.body, {msg:'<b>Welcome to FeyaSoft MyCalendar</b><br>Please wait, loading Setting...'});
     wait.show();
@@ -55,27 +55,13 @@ Ext.onReady(function(){
                  */
                 Ext.defer(fn, 50);
             }else{
-                var mp = new Ext.ux.calendar.MainPanel({
-                    title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
-                    datasource:ds,
-                    calendarSetting:cs,
-                    userId:userId
+            	var wn = new Ext.ux.calendar.CalendarWin({
+            		title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
+                    datasource : ds,
+                    calendarSetting : cs,
+                    userId : userId
                 });
-                var dv = new Ext.Viewport({
-                    layout:'fit',
-                    items:[{
-                        xtype:'tabpanel',
-                        activeTab:0,
-                        deferredRender:true,
-                        resizeTabs:true,
-                        tabWidth:300,
-                        minTabWidth:0,
-                        layoutOnTabChange:true,
-                        hideMode:'offsets',
-                        border:false,                        
-                        items:[mp]
-                    }]
-                });
+                wn.show();                
                 wait.hide();
             }
         };        

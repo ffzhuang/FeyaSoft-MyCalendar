@@ -64,18 +64,17 @@ Ext.ux.calendar.view.ResultView = function(config){
      	// groupHeaderTpl: 'Time: {ymd} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})'
      	 groupHeaderTpl: '{rows.length} Item{[values.rows.length > 1 ? "s" : ""]})'
     });
-      this.list = Ext.create('Ext.grid.Panel', {
-      	border:false,
-        frame: true,
+      this.list = Ext.create('Ext.grid.Panel', {      	
         forceFit:true,
         store: store,
         features: [this.groupingFeature],
-        columns:columns,
-        bbar:pbar
+        columns:columns        
     });
     Ext.ux.calendar.view.ResultView.superclass.constructor.call(this, {
         layout:'fit',
-        items:[this.list]
+        items:[this.list],
+        bodyStyle:'border-bottom:none;',
+        bbar:pbar
     });
     this.on('render', this.onRenderFn, this);    
     this.list.on('itemdblclick', this.onRowDblClickFn, this);
@@ -167,7 +166,7 @@ Ext.extend(Ext.ux.calendar.view.ResultView, Ext.ux.calendar.view.BasicView, {
             //store.commitChanges();
             var cc = this.ownerCt;
             var cview = cc.currentView;
-            if('string' == Ext.type(rd.data.repeatType)){   
+            if('string' == Ext.ux.calendar.Mask.typeOf(rd.data.repeatType)){   
                 eh.updateEvent(event, cview);
             }else{                
                 eh.updateRepeatEvent(event, cview, oevent);

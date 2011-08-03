@@ -46,7 +46,7 @@
 
 4: Download extjs 4.x from http://www.extjs.com and put it into:
 
-    <unzipped-folder>/web-app/js/extjs4
+    <unzipped-folder>/web-app/js/extjs
 
 5: Install mail plugin
 

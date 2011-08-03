@@ -137,10 +137,10 @@ Ext.ux.calendar.EventHandler = function(config){
             '</div>',
         '</div>'].join(''), {
         	hasEventTypeColor : function(eventTypeColor){
-        		return eventTypeColor!=undefined &&false != Ext.type(eventTypeColor) && '' !== eventTypeColor;
+        		return eventTypeColor!=undefined &&false != Ext.ux.calendar.Mask.typeOf(eventTypeColor) && '' !== eventTypeColor;
         	},
             isRepeat:function(repeatType){
-                return ('string' != Ext.type(repeatType));
+                return ('string' != Ext.ux.calendar.Mask.typeOf(repeatType));
             },
             isException:function(repeatType){
                 return ('exception' == repeatType);
@@ -187,10 +187,10 @@ Ext.ux.calendar.EventHandler = function(config){
             '</b>',
         '</div>'].join(''), {
         	hasEventTypeColor : function(eventTypeColor){
-        		return eventTypeColor!=undefined &&false != Ext.type(eventTypeColor) && '' !== eventTypeColor;
+        		return eventTypeColor!=undefined &&false != Ext.ux.calendar.Mask.typeOf(eventTypeColor) && '' !== eventTypeColor;
         	},
             isRepeat:function(repeatType){
-                return ('string' != Ext.type(repeatType));
+                return ('string' != Ext.ux.calendar.Mask.typeOf(repeatType));
             },
             isException:function(repeatType){
                 return ('exception' == repeatType);
@@ -252,7 +252,7 @@ Ext.ux.calendar.EventHandler = function(config){
             '</tr></tbody></table>',
         '</div>'].join(''), {
         	hasEventTypeColor : function(eventTypeColor){
-        		return eventTypeColor!=undefined&&false != Ext.type(eventTypeColor) && '' !== eventTypeColor;
+        		return eventTypeColor!=undefined&&false != Ext.ux.calendar.Mask.typeOf(eventTypeColor) && '' !== eventTypeColor;
         	},
             isLeftJoin:function(lflag){
                 return lflag;
@@ -261,7 +261,7 @@ Ext.ux.calendar.EventHandler = function(config){
                 return rflag;
             },
             isRepeat:function(repeatType){
-                return ('string' != Ext.type(repeatType));
+                return ('string' != Ext.ux.calendar.Mask.typeOf(repeatType));
             },
             isException:function(repeatType){
                 return ('exception' == repeatType);
@@ -513,9 +513,9 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
             scope:this
         });
         var palette = new Ext.ColorPalette({
-            iconCls:'icon_feyaCalendar_clear_event',
+        	style:'padding-left:30px;',
             height:20
-            });
+        });
         this.menu = new Ext.menu.Menu({
             cls:'x-calendar-menu',
             items:[
@@ -582,7 +582,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
         var event = eEl.bindEvent;
         var oevent = Ext.apply({}, event);   
         event.locked = true;
-        if('string' == Ext.type(event.repeatType)){
+        if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
             eh.updateEvent(event, cview);
         }else{
             /*
@@ -616,7 +616,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
         var event = eEl.bindEvent;
         var oevent = Ext.apply({}, event);
         event.locked = false;
-        if('string' == Ext.type(event.repeatType)){
+        if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
             eh.updateEvent(event, cview);
         }else{
             /*
@@ -657,7 +657,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
         var cview = eEl.cview;
         var eh = cview.ehandler;
         var event = eEl.bindEvent;        
-        if('string' == Ext.type(event.repeatType)){
+        if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
             eh.freeEventEl(eEl);
             eh.deleteEvent(event, cview, eEl.col);
         }else{
@@ -809,7 +809,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
                                 var unit = obj.unit;
                                 early = Ext.ux.calendar.Mask.getMinute(early, unit);
                                 now = Ext.Date.add((new Date()),Date.MINUTE, early);                                
-                                if(now.between(startTime, endTime)){
+                                if(Ext.Date.between(now, startTime, endTime)){
                                     expire.push(Ext.applyIf({
                                         color:'#'+Ext.ux.calendar.Mask.getColorByIndex(this.calendarSet[event.calendarId].color),
                                         startDate:event.day+' '+getHM(this.intervalSlot, event.startRow, this.hourFormat),
@@ -819,7 +819,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
                             }
                         }
                     }else{/*for old version*/
-                        if(now.between(startTime, endTime)){
+                    	if(Ext.Date.between(now, startTime, endTime)){
                             expire.push(Ext.applyIf({
                                 color:'#'+Ext.ux.calendar.Mask.getColorByIndex(this.calendarSet[event.calendarId].color),
                                 startDate:event.day+' '+getHM(this.intervalSlot, event.startRow, this.hourFormat),
@@ -1208,7 +1208,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
     },
 
     createEventToLayout:function(event, cview, col){ 
-        if(col==undefined||false === Ext.type(col)){  //Ext.type(undefined)  ==>> ext3 中返回false , ext4 返回undefined
+        if(col==undefined||false === Ext.ux.calendar.Mask.typeOf(col)){  //Ext.ux.calendar.Mask.typeOf(undefined)  ==>> ext3 中返回false , ext4 返回undefined
             col = this.getIndexFromDay(cview, event.day);
         }
         var glayout = this.calendarLayout;
@@ -1255,14 +1255,14 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
     },
 
     updateEventCallback:function(event, cview, ocol, oevent, noLayout){
-        if('function' === Ext.type(noLayout)){
+        if('function' === Ext.ux.calendar.Mask.typeOf(noLayout)){
                 noLayout(event);
             }
             var all = ((0 == event.startRow && this.rowCount == event.endRow) || (event.day != event.eday)), oall = false;
             var col;
             var glayout = this.calendarLayout;
             if(oevent){
-                if(ocol==undefined||false === Ext.type(ocol)){
+                if(ocol==undefined||false === Ext.ux.calendar.Mask.typeOf(ocol)){
                     ocol = this.getIndexFromDay(cview, oevent.day);
                 }
                 oall = ((0 == oevent.startRow && this.rowCount == oevent.endRow) || (oevent.day != oevent.eday));
@@ -1291,7 +1291,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
                     }
                 }
             }else{
-                if(ocol==undefined||false == Ext.type(ocol)){
+                if(ocol==undefined||false == Ext.ux.calendar.Mask.typeOf(ocol)){
                     col = this.getIndexFromDay(cview, event.day);
                 }else{
                     col = ocol;
@@ -1303,7 +1303,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
                 var layout = glayout.getLayout(event.day, cview);
                 if(layout){
                     var rs = layout.updateLayout(event, 'update');
-                    if(col!=undefined&&false != Ext.type(col) && rs.elist && cview instanceof Ext.ux.calendar.view.DayView){//3时候 if(false != Ext.type(col) && rs.elist && cview instanceof Ext.ux.calendar.view.DayView)
+                    if(col!=undefined&&false != Ext.ux.calendar.Mask.typeOf(col) && rs.elist && cview instanceof Ext.ux.calendar.view.DayView){//3时候 if(false != Ext.ux.calendar.Mask.typeOf(col) && rs.elist && cview instanceof Ext.ux.calendar.view.DayView)
                         this.renderEvent(cview, rs.elist, col);
                     }
                 }
@@ -1345,7 +1345,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
             var layout = glayout.getLayout(event.day, cview);
             if(layout){
                 var rs = layout.updateLayout(event, 'delete');
-                if(col != undefined &&false != Ext.type(col) && cview instanceof Ext.ux.calendar.view.DayView){// 3时候 if(false != Ext.type(col) && cview instanceof Ext.ux.calendar.view.DayView)
+                if(col != undefined &&false != Ext.ux.calendar.Mask.typeOf(col) && cview instanceof Ext.ux.calendar.view.DayView){// 3时候 if(false != Ext.ux.calendar.Mask.typeOf(col) && cview instanceof Ext.ux.calendar.view.DayView)
                     this.renderEvent(cview, rs.elist, col);
                 }
             }
@@ -1387,7 +1387,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
      * for set the pin-on class for event element
      */
     setPinOn:function(coverEl){
-        var pinEl = coverEl.child('img');
+        var pinEl = coverEl.down('img');
         pinEl.removeCls('x-calendar-event-pin-off');
         pinEl.addCls('x-calendar-event-pin-on');
     },
@@ -1395,7 +1395,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
      * for set the pin-off class for event element
      */
     setPinOff:function(coverEl){
-        var pinEl = coverEl.child('img');
+        var pinEl = coverEl.down('img');
         pinEl.removeCls('x-calendar-event-pin-on');
         pinEl.addCls('x-calendar-event-pin-off');
     },
@@ -1486,7 +1486,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
         if(bottomEl){
             bottomEl.setWidth(w);
         }
-        if(pinFlag!=undefined&&false !== Ext.type(pinFlag)){
+        if(pinFlag!=undefined&&false !== Ext.ux.calendar.Mask.typeOf(pinFlag)){
             this.editDisabled = pinFlag;
         }
         if(this.editDisabled){
@@ -1932,7 +1932,7 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
     },
 
     updateRepeatEvent:function(event, cview, oevent){
-        if('string' == Ext.type(event.repeatType)){
+        if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
             var eps = oevent.repeatType.exceptions || {};
             eps[oevent.day] = true;
             oevent.repeatType.exceptions = eps;            
@@ -1942,10 +1942,10 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
             if(backObj.id){
                 event.eventId = backObj.id;
             }
-            if('string' == Ext.type(oevent.repeatType)){
+            if('string' == Ext.ux.calendar.Mask.typeOf(oevent.repeatType)){
                 this.deleteEventFromLayout(oevent, cview);
                 gLayout.updateRepeatEventList(cview, [event], 'update');
-            }else if('string' == Ext.type(event.repeatType)){
+            }else if('string' == Ext.ux.calendar.Mask.typeOf(event.repeatType)){
                 this.createEventToLayout(event, cview);
                 if('exception' == event.repeatType){                    
                     gLayout.updateRepeatEventList(cview, [oevent], 'update');
