@@ -96,7 +96,7 @@ Ext.define('Ext.ux.calendar.WestPanel', {
         this.callParent(arguments);
         
         this.addEvents('changedate');
-        this.datePicker.on('render', this.onDatePickerRenderFn, this);
+        this.datePicker.on('aferinitevent', this.afterDatePickerInitFn, this);
         this.datePicker.on('select', this.onSelectFn, this);
         this.on('changedate', this.changeDateLabel, this);
         this.on('render', this.onRenderFn, this);        
@@ -159,14 +159,13 @@ Ext.define('Ext.ux.calendar.WestPanel', {
                 }
                 this.datePicker.setValue(fd);
             } else {
-        //this.datePicker.setValue(fromDate);
-        }
+            	this.datePicker.setValue(fromDate);
+            }
         }
     },
 	
-    onDatePickerRenderFn : function() {
+    afterDatePickerInitFn : function() {
         var cview = this.ownerCt.calendarContainer.currentView;
-        this.updateDatePicker(cview.daySet[0], cview.daySet[cview.daySet.length
-            - 1]);
+        this.updateDatePicker(cview.daySet[0], cview.daySet[cview.daySet.length - 1]);
     }
 });

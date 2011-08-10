@@ -172,11 +172,12 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 			'</tpl>'
 		);
 		var d = [];
+		
 		for(var j = 0; j < this.dayNum; j++){
-			d[d.length] = {
+			d.push({
                 idx:j,
 				day: Ext.Date.format(this.daySet[j],this.dayFormat)
-			};
+			});
 		}
 		days = this.dayTpl.apply(d);
         var week =  Ext.Date.getWeekOfYear(this.daySet[0]);        

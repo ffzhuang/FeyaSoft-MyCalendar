@@ -35,7 +35,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
     	labelWidth: 180,
     	store:Ext.ux.calendar.Mask.getHourFormatStore(),
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         valueField:'id',
         displayField:'text',        
@@ -82,7 +82,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
         displayField:'display',
         valueField:'name' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -97,7 +97,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
 		displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -112,7 +112,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
         displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         labelWidth: 180,
         selectOnFocus:true,
@@ -145,7 +145,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
 		displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -160,7 +160,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
 		displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -175,7 +175,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
 		displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -190,7 +190,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
         displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -205,7 +205,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
         displayField:'display',
         valueField:'value' ,
         typeAhead:true,
-        mode:'local',
+        queryMode:'local',
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
@@ -265,15 +265,14 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
     });
 
     this.tabs = new Ext.TabPanel({
-        border:false,
+        //border:false,
         activeTab:0,
         deferredRender:true,
         resizeTabs:true,
         tabWidth:1000,
         minTabWidth:0,
         layoutOnTabChange:false,
-       // cls:'x-feyaCalendar-setting',
-        hideMode:'offsets',
+       // cls:'x-feyaCalendar-setting',        
         items:[
             this.generalForm,
             this.dwViewForm,
@@ -303,6 +302,7 @@ Ext.ux.calendar.popup.SettingPopup = function(config){
     });
     
     Ext.ux.calendar.popup.SettingPopup.superclass.constructor.call(this, {
+    	border:false,
         iconCls:'icon_feyaCalendar_setting',
         cls:'x-feyaCalendar-setting',
         title:lan['title'],
@@ -326,7 +326,8 @@ Ext.extend(Ext.ux.calendar.popup.SettingPopup, Ext.Window, {
         if(5 == v.length && pattern.test(v)){
             var sender = this.sender;
             if(sender.activeStartTimeField && sender.activeEndTimeField){
-                if(sender.activeStartTimeField.getValue() >= sender.activeEndTimeField.getValue()){
+            	var activeEndTime = sender.activeEndTimeField.getValue();            	
+                if(activeEndTime && sender.activeStartTimeField.getValue() >= activeEndTime){
                     return lan['startEndInvalid'];
                 }
             }
@@ -337,6 +338,7 @@ Ext.extend(Ext.ux.calendar.popup.SettingPopup, Ext.Window, {
     },
 
 	popup:function(data){
+		
 		this.hourFormatField.setValue(data.hourFormat);
 		this.dayFormatField.setValue(data.dayFormat);
 		this.weekFormatField.setValue(data.weekFormat);
@@ -345,14 +347,14 @@ Ext.extend(Ext.ux.calendar.popup.SettingPopup, Ext.Window, {
         this.languageField.setValue(data.language);
         this.createByDblClickField.setValue(data.createByDblclick);
         this.singleDayField.setValue(!data.singleDay);
-        this.activeStartTimeField.setValue(data.activeStartTime);
+        this.activeStartTimeField.setValue(data.activeStartTime);        
         this.activeEndTimeField.setValue(data.activeEndTime);
         this.hideInactiveTimeField.setValue(data.hideInactiveRow);
-        this.intervalField.setValue(data.intervalSlot);
+        this.intervalField.setValue(parseInt(data.intervalSlot));
         this.startDayField.setValue(data.startDay);
         this.readOnlyField.setValue(data.readOnly);
         this.initialViewField.setValue(data.initialView);
-		this.show(Ext.getBody());
+		this.show();
 	},
 	
 	onApplyFn:function(){

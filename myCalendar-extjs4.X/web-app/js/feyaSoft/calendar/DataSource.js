@@ -848,6 +848,7 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
             },
             success:function(response, options){
                  var backObj = Ext.decode(response.responseText);
+                 
                  /*
                   * The back json string should have a param "success", when it equal "false" means fail to delete in server side
                   */

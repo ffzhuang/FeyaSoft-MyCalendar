@@ -26,7 +26,7 @@ Ext.ns("Ext.ux.calendar");
 
 Ext.ux.calendar.Language = {
     'CalendarWin':{
-        'title':'FeyaSoft MyCalendar 2.5.1',
+        'title':'FeyaSoft MyCalendar 2.5.2',
         'loadMask.msg':'请等待...'
     },
 
