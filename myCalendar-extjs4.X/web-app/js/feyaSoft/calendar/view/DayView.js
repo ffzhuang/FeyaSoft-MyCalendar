@@ -180,7 +180,12 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 			});
 		}
 		days = this.dayTpl.apply(d);
-        var week =  Ext.Date.getWeekOfYear(this.daySet[0]);        
+		var wdate = this.daySet[0];               
+        var n = Ext.Date.format(wdate, 'N');
+		if(7 == n){
+			wdate = Ext.Date.add(wdate, Ext.Date.DAY, 1);
+		}
+		var week =  Ext.Date.getWeekOfYear(wdate);
         if(1 == this.dayNum){
             week = '<u><b id="'+this.id+'-x-dayview-wn" class="x-dayview-wn-link">'+week+'</b></u>';
         }else{
@@ -1368,9 +1373,14 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
                 titleEl.dom.innerHTML = day;
             }
         }
+		var wdate = this.daySet[0];
+		var n = Ext.Date.format(wdate, 'N');
+		if(7 == n){
+			wdate = Ext.Date.add(wdate, Ext.Date.DAY, 1);
+		}
         var wEl = Ext.get(this.id+'-x-dayview-wn');
         if(wEl){
-            wEl.dom.innerHTML = Ext.Date.getWeekOfYear(this.daySet[0]);
+            wEl.dom.innerHTML = Ext.Date.getWeekOfYear(wdate);
         }
 	},
     
@@ -1401,9 +1411,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
         }
         if(this.cptable){
             var tbody = this.cptable.dom.firstChild;
-            while(0 < tbody.childNodes.length){
-                Ext.get(tbody.lastChild).remove();
-            }
+            tbody.innerHTML = '<tr><td></td></tr>';
         }
     },
 

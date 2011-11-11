@@ -39,7 +39,7 @@ Notes: This method just let your have a quick view about myCalendar function.
 
     <unzipped-folder>/web-app/js/extjs
 
-3: Start application server, for example Tomcat. Point it to this project
+3: Start application server, for example Tomcat, Jetty. Point it to this project
 
 4: Go to url:
 

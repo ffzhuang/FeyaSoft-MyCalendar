@@ -1,5 +1,5 @@
 /**
- * FeyaSoft MyCalendar
+ * CubeDrive MyCalendar
  * Copyright(c) 2006-2011, FeyaSoft Inc. All right reserved.
  * info@feyasoft.com
  * http://www.feyasoft.com
@@ -26,7 +26,7 @@ Ext.ns("Ext.ux.calendar");
 
 Ext.ux.calendar.Language = {
     'CalendarWin':{
-        'title':'FeyaSoft MyCalendar 2.5.2',
+        'title':'CubeDrive MyCalendar 2.5.3',
         'loadMask.msg':'请等待...'
     },
 
