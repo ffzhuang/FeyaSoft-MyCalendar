@@ -1,0 +1,87 @@
+Version 2.5.0, released at August 2, 2011
+
+   Upgrade system to make it work with extjs4.X
+
+Version 2.1.0, released at June 5, 2010
+
+   Fixed bunch of bugs, re-organize the structure and purify the code.
+
+Version 2.0.5, released at March 31, 2010
+
+   1: Add email notification to the system
+   2: Fixed a bunch of bugs
+   3: Add one more setting "Initial view", which define the initial view of myCalendar
+
+Version 2.0.3, released at Jan 28, 2010
+
+   1 Fixed below bugs:
+        PHP backend, miss a ' in sql in CreateEvent function in CalendarAgent.php;
+        PHP backend, can not copy all in-day events from a day to another;
+        Cross-day event layout issue. If the day/week/month views start at sunday, switch view from "Show All" to "Only Weekday" the cross-day event won't right. Modified CalendarLayout.js, DayView.js, MonthView.js, EventHandler.js;
+        The floating DIV disappear issue in IE8, modified DayView.js.
+   2 New feature:
+        Add a new setting option called 'readOnly'. Set it true will make myCalendar only view the event but can not change anything.
+        Add a message hint when cut/copy in MonthView, add a new file "CommentTip.js" for this.
+   For upgrade, you have to replace all the js files, and add a new field "readOnly" in CalendarSetting table. See myCalendar2.0.3-tables.sql for details.
+
+Version 2.0.2, released at Jan 12, 2010
+
+   Fix several bugs. And add an Test.js which will be used to test Panel.
+
+Version 2.0.1, released at Dec 30, 2009
+
+   Make myCalendar work in both version of extjs lib 3.1.0 and 3.0.0
+
+Version 2.0.0, released at Dec 1, 2009
+
+   1: Changed some CSS issues and fixed several bugs;
+   2: Add cross-day event function;
+   3: Add repeat event function;
+   4: Add 7 more settings as below,
+          activeStartTime:define the active start time of a day, example: '09:00'
+          activeEndTime:define the active end time of a day, example: '19:00'
+          hideInactiveRow:true for hide the inactive time, or show it at different css
+          intervalSlot:the interval of a row in dayview/weekview, for example: '30' means 30 minutes
+          startDay:define the week start at monday or sunday, 1 for monday, 0 for sunday
+          singleDay:true for disable cross-day event function
+          createByDblclick:true for creat evnet by double click, notice when you set it true, the drag create function won't work
+        For more details about these fields, you can see README/php/myCalendar2.0-tables for detail;
+   5: Change the old event editor, and add DetailEditor;
+   6: Add week num in monthview;
+   7: Add refresh function
+          now if you want to clean and reload all calendar and events from DB, you just need get CalendarContainer first,
+          and call 'CalendarContainer.fireEvent("refresh")'
+   8: Change the DatePicker component to show the current date range.
+
+Version 1.1.0, released at October 17, 2009
+
+   1: Changed some CSS issues and Fixed several bugs;
+   2: Make myCalendar work with Extjs2.2
+   3: Change the hide/show calendar function to make it faster when there is
+        a lot of events in month view;
+   4: Add more options in the setting window;
+   5: Add lock/unlock functions in the context menu of events, which change the
+        db table fields too;
+   6: Add Multi-language setting in the tab More menu.
+
+Version 1.0.2, released at September 29, 2009
+
+   1: Set default appear hour start at 9 am (scroll bar down a little bit).
+   2: Change code to make it do not need request backend everytime when change days.
+       The events of visited days will save in js side, so this will decrease
+       the pressure of server.
+   3: Single click and drag to create new event - like google calendar did.
+
+Version 1.0.1, released at August 29, 2009
+
+   Fixed: error when click on the date picker: p.fireFn is undefined
+
+Version 1.0.0, released at August 22, 2009
+
+   First release
+
+
+
+
+
+
