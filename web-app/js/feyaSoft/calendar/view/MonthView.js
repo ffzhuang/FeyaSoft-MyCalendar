@@ -545,7 +545,7 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 		this.alignDetailCt();
 	},
 
-	_onPortMouseDownFn : function(e) {
+	_onPortMouseDownFn : function(e) {		
 		e.stopEvent();
 		this.fireEvent('hideeditor');
 		var target = e.getTarget();
@@ -557,16 +557,14 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 		} else {
 			if (this.detailing) {
 				if (!(Ext.ux.calendar.Mask.includeIsClass(target.className,
-						'x-event-detail-ct') || tgEl
-						.parent('.x-event-detail-ct'))) {
+						'x-event-detail-ct') || tgEl.parent('.x-event-detail-ct'))) {
 					this.fireEvent('canceldetail');
 				} else {
 					return;
 				}
 			}
 			if (!this.createByDblclick && !this.ehandler.readOnly) {
-				if (!Ext.ux.calendar.Mask.includeIsClass(target.className,
-						'x-monthview-tool-drop')
+				if (!Ext.ux.calendar.Mask.includeIsClass(target.className, 'x-monthview-tool-drop') && !tgEl.hasCls('x-monthview-viewer-link')
 						&& !tgEl.parent('.x-monthview-viewer-link')) {
 					var eEl;
 					if (Ext.ux.calendar.Mask.includeIsClass(target.className,
@@ -707,10 +705,12 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 	},
 
 	_onPortClickFn : function(e) {
+		
 		var eh = this.ehandler;
 		var target = e.getTarget();
 		var tgEl = Ext.get(target);
 		var titleEl;
+		
 		if (Ext.ux.calendar.Mask.includeIsClass(target.className,
 				'x-event-detail-tool-close')) {
 			this.fireEvent('canceldetail');

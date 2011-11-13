@@ -28,7 +28,7 @@ Ext.ux.calendar.CONST = {
     /*
      * The version number of myCalendar
      */
-    VERSION:'2.5.1',
+    VERSION:'2.5.2',
     /*
      *true to show the language submenu in myCalendar, or not
      *

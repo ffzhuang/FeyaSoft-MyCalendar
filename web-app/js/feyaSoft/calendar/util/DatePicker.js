@@ -47,7 +47,12 @@ Ext.util.DatePicker = Ext.extend(Ext.picker.Date, {
     },
 
     update : function(date, forceRefresh){
-        Ext.util.DatePicker.superclass.update.call(this, date, forceRefresh);
-        this.updateRange();
+    	Ext.util.DatePicker.superclass.update.apply(this, arguments);
+        this.updateRange();     
+    },
+    
+    render : function(){
+    	this.callParent(arguments);
+    	this.fireEvent('aferinitevent', this);
     }
 });
