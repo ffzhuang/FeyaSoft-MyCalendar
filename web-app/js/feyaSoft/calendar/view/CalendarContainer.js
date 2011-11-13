@@ -541,23 +541,23 @@ Ext.extend(Ext.ux.calendar.CalendarContainer, Ext.Panel, {
     },
     
     onAboutMyCalendarFn : function(){
-        var myHtml = '<div style="float:left;width:240px;padding:25px;"><img src="'+Ext.ux.calendar.CONST.MAIN_PATH+'image/feyasoft_logo.jpg"/></div>' +
-        '<div style="float:left;width:320px;padding-top:20px;">' +
-        '    <span style="font-size:16px;"><b>FeyaSoft MyCalendar</b></span><br/>' +
+        var myHtml = '<div style="float:left;width:290px;padding:25px;"><img src="'+Ext.ux.calendar.CONST.MAIN_PATH+'image/cubedrive.png"/></div>' +
+        '<div style="float:left;width:270px;padding-top:20px;">' +
+        '    <span style="font-size:16px;"><b>CubeDrive MyCalendar</b></span><br/>' +
         '    <font color="grey">Version ' + Ext.ux.calendar.CONST.VERSION +'</font>' +
         '    <br/><br/>' +
-        '    Copyright &copy; 2006-2011 FeyaSoft Inc. <br>All right reserved<br/>' +
+        '    Copyright &copy; 2007-2011 FeyaSoft Inc. <br>All right reserved<br/>' +
         '</div>' +
         '<div style="clear:left;padding: 0 20px 0 20px;">' +
+        '    CubeDrive and CubeDrive logo are the trademarks of the FeyaSoft Inc. All right reserved.<br><br>' +
         '    To query license information, please vist our site or ' +
-        '    send the email to: <a href="mailto:info@feyasoft.com">info@feyasoft.com</a>.' +
-        '    <br><br>For more detail information, please visit: <a href="http://www.cubedrive.com/myCalendar" target="_blank">http://www.cubedrive.com/myCalendar</a> and ' +
-        '    <a href="http://www.feyasoft.com" target="_blank">http://www.feyasoft.com</a>' +
+        '    send the email to: <a href="mailto:info@cubedrive.com">info@cubedrive.com</a>.' +
+        '    <br>For more detail information, please visit: <a href="http://www.cubedrive.com/myCalendar" target="_blank">http://www.cubedrive.com/myCalendar</a>' +
         '</div>';
 
         var aboutUsWin = new Ext.Window({
             iconCls:'icon_feyaCalendar_feyasoft',
-            title:'About FeyaSoft MyCalendar',
+            title:'About CubeDrive MyCalendar',
             width: 600,
             height: 270,
             closable:true,

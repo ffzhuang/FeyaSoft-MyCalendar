@@ -27,7 +27,7 @@ Ext.onReady(function() {
     Ext.tip.QuickTipManager.init();
     Ext.QuickTips.init();
     var wait = new Ext.LoadMask(document.body, {
-        msg : '<b>Welcome to FeyaSoft Calendar</b><br>Please wait, loading Setting...'
+        msg : '<b>Welcome to CubeDrive MyCalendar</b><br>Please wait, loading Setting...'
     });
     wait.show();
 
@@ -67,7 +67,7 @@ Ext.onReady(function() {
                 } else {
 
                     var mp = new Ext.ux.calendar.MainPanel({
-                    	title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
+                    	title : 'MyCalendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
                     	tools : [{
                             type : 'close',
                             handler : function(){                            	

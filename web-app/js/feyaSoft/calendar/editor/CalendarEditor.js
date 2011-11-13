@@ -177,8 +177,8 @@ Ext.extend(Ext.ux.calendar.editor.CalendarEditor, Ext.Window, {
                     Ext.apply(cEl.calendar, params);
                     var color = cEl.calendar.color;
                     eh.calendarSet[cEl.calendar.id] = cEl.calendar;
-                    var titleEl = cEl.down('.x-calendar-title-b');
-                    if(titleEl){                    	
+                    var titleEl = cEl.child('.x-calendar-title-b');
+                    if(titleEl){
                         titleEl.dom.innerHTML = '<b>'+params.name+'</b>';                        
                     }
                     if(oldColor != color){

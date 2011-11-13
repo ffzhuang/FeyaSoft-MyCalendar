@@ -1,5 +1,5 @@
 /**
- * FeyaSoft MyCalendar
+ * CubeDrive MyCalendar
  * Copyright(c) 2006-2011, FeyaSoft Inc. All right reserved.
  * info@feyasoft.com
  * http://www.feyasoft.com
@@ -28,7 +28,7 @@ Ext.ux.calendar.Language = {
 
     // please help to transfer words after :. Thanks
     'CalendarWin':{
-        'title':'FeyaSoft MyCalendar 2.5.3',
+        'title':'CubeDrive MyCalendar 2.5.3',
         'loadMask.msg':'Please wait...'
     },
 
@@ -50,7 +50,7 @@ Ext.ux.calendar.Language = {
         'monthMenu.showAll.text':'Show All',
         'monthMenu.onlyWeek.text':'Only Weekday',
         'moreMenu.setting.text':'Setting',
-        'moreMenu.about.text':'About FeyaSoft MyCalendar',
+        'moreMenu.about.text':'About CubeDrive MyCalendar',
         'moreBtn.text':'More',
         'searchCriteria.text':'Search',        
         'moreMenu.showAlert.text':'Activate Alert Function',

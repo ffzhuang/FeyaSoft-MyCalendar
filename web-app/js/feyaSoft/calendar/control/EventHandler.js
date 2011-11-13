@@ -1000,7 +1000,11 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
         }
         var endRow = x+this.numInHour;
         var cs = this.calendarSetting;
-        if(endRow > cs.rowCount){
+        if(cs.hideInactiveRow){
+        	if(endRow > cs.activeEndRow){
+        		endRow = cs.activeEndRow;
+        	}        	
+        }else if(endRow > cs.rowCount){
             endRow = cs.rowCount;
         }        
         var event = {
@@ -1094,6 +1098,8 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
         for(var i = 0, len = rs.length; i < len; i++){
             var e = rs[i];   
             var pn =Ext.get(cview.id+'-x-dayview-viewer-'+e.startRow+'-'+col);//this.getChlidrenEl(cview,cview.id+'-x-dayview-viewer-'+e.startRow+'-'+col)
+            if(pn){
+            	
 	            var cl = pn.getLeft();
 	            var tw = pn.getWidth();
 	            var offset = Math.round(tw*cview.offsetPercent);
@@ -1182,8 +1188,11 @@ Ext.extend(Ext.ux.calendar.EventHandler, Ext.util.Observable, {
 	                contentEl.cview = cview;
 	                contentEl.cEl = pn;
 	                contentEl.col = col;                
-	             }
+	             }	           
+            }else{
+            //	alert(Ext.encode(e))
             }
+        }
         cview.resizePort();
         this.floating = false;
         return coverEl;

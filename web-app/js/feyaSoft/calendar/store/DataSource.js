@@ -333,11 +333,13 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
                         if(endRow == startRow){
                             endRow++;
                         }
+                        var day = data.ymd;
+                        var eday = data.eymd;
+                        //alert(this.activeStartRow+':'+this.activeEndRow+':'+this.hideInactiveRow+':'+startRow+':'+endRow+':'+data.subject)
                         if(!this.hideInactiveRow 
                             || (this.activeStartRow <= startRow && endRow <= this.activeEndRow)
-                                || (0 == startRow && this.rowCount == endRow)){
-                            var day = data.ymd;
-                            var eday = data.eymd;
+                                || (0 == startRow && this.rowCount == endRow) || (day != eday)){
+                            
                             eventSet[day] = eventSet[day] || [];                            
                             var e = {
                                 eventId:data.id,
@@ -396,20 +398,27 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
                         var endRow = getRowFromHM(data.endTime, this.intervalSlot);
                         if(startRow == endRow){
                             endRow++;
-                        }                        
-                        var e = {
-                            eventId:data.id,
-                            calendarId:data.calendarId,
-                            color:data.color,
-                            startRow:startRow,
-                            endRow:endRow,
-                            subject:data.subject,
-                            content:data.description,
-                            repeatType:Ext.decode(data.repeatType),                            
-                            alertFlag:Ext.decode(data.alertFlag),
-                            locked:data.locked
-                        };                        
-                        eventSet[e.eventId] = e;
+                        }   
+                        var day = data.ymd;
+                        var eday = data.eymd;
+                        //alert(this.activeStartRow+':'+this.activeEndRow+':'+this.hideInactiveRow+':'+startRow+':'+endRow+':'+data.subject)
+                        if(!this.hideInactiveRow 
+                            || (this.activeStartRow <= startRow && endRow <= this.activeEndRow)
+                                || (0 == startRow && this.rowCount == endRow) || (day != eday)){
+	                        var e = {
+	                            eventId:data.id,
+	                            calendarId:data.calendarId,
+	                            color:data.color,
+	                            startRow:startRow,
+	                            endRow:endRow,
+	                            subject:data.subject,
+	                            content:data.description,
+	                            repeatType:Ext.decode(data.repeatType),                            
+	                            alertFlag:Ext.decode(data.alertFlag),
+	                            locked:data.locked
+	                        };                        
+	                        eventSet[e.eventId] = e;
+                        }
                     }
                     sucessFn.call(scope, eventSet);
                 }
@@ -846,7 +855,7 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
             params:{
                 'userId':userId
             },
-            success:function(response, options){
+            success:function(response, options){            	
                  var backObj = Ext.decode(response.responseText);
                  
                  /*
@@ -873,20 +882,27 @@ Ext.extend(Ext.ux.calendar.DataSource, Ext.util.Observable, {
                         var endRow = getRowFromHM(data.endTime, this.intervalSlot);
                         if(startRow == endRow){
                             endRow++;
-                        }                        
-                        var e = {
-                            eventId:data.id,
-                            calendarId:data.calendarId,
-                            color:data.color,
-                            startRow:startRow,
-                            endRow:endRow,
-                            subject:data.subject,
-                            content:data.description,
-                            repeatType:Ext.decode(data.repeatType),
-                            alertFlag:Ext.decode(data.alertFlag),
-                            locked:data.locked
-                        };
-                        eventSet[e.eventId] = e;
+                        }    
+                        var day = data.ymd;
+                        var eday = data.eymd;
+                        
+                        if(!this.hideInactiveRow 
+                            || (this.activeStartRow <= startRow && endRow <= this.activeEndRow)
+                                || (0 == startRow && this.rowCount == endRow) || (day != eday)){
+	                        var e = {
+	                            eventId:data.id,
+	                            calendarId:data.calendarId,
+	                            color:data.color,
+	                            startRow:startRow,
+	                            endRow:endRow,
+	                            subject:data.subject,
+	                            content:data.description,
+	                            repeatType:Ext.decode(data.repeatType),
+	                            alertFlag:Ext.decode(data.alertFlag),
+	                            locked:data.locked
+	                        };
+	                        eventSet[e.eventId] = e;
+                        }
                     }
                     backObj.re = eventSet;
                     sucessFn.call(scope, backObj);

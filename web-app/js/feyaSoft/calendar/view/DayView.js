@@ -1411,9 +1411,7 @@ Ext.ux.calendar.view.DayView = Ext.extend(Ext.ux.calendar.view.BasicView, {
         }
         if(this.cptable){
             var tbody = this.cptable.dom.firstChild;
-            while(0 < tbody.childNodes.length){
-                Ext.get(tbody.lastChild).remove();
-            }
+            tbody.innerHTML = '<tr><td></td></tr>';
         }
     },
 
