@@ -26,7 +26,7 @@ Ext.ns("Ext.ux.calendar");
 
 Ext.ux.calendar.Mask = {
     'CalendarWin':{
-        'title':'FeyaSoft MyCalendar 2.5.0',
+        'title':'FeyaSoft MyCalendar 2.5.1',
         'loadMask.msg':'Please wait...'
     },
 

@@ -26,7 +26,7 @@
 Ext.define('Ext.ux.calendar.WestPanel', {
     extend : 'Ext.Panel',
     
-    title: 'Powered by feyaSoft',
+    title: 'Powered by FeyaSoft',
     
     iconCls: 'icon_feyaCalendar_feyasoft',
         

@@ -262,11 +262,11 @@ Ext.ux.calendar.CalendarContainer = function(config){
         border:false,
         region:'center',
         cls:'x-calendar-container',
-        layout:'card',
-        bodyStyle: 'border-top:none;background:none;',
-        layoutConfig:{
-            deferredRender:true
+        layout:{
+        	type: 'card',
+        	deferredRender: true
         },
+        bodyStyle: 'border-top:none;background:none;',        
         activeItem:this.currentIdx,
         items:items,
         tbar:tobar
@@ -280,7 +280,7 @@ Ext.ux.calendar.CalendarContainer = function(config){
         single:true
     };
     if(Ext.isIE){
-        options['delay'] = 5000;
+        options['delay'] = 500;
     }
     this.currentView.on('afterresize', this.onAfterResizeFn, this, options);
     this.weekView.on('viewDay', this.onDayChangeFn, this);
@@ -299,14 +299,11 @@ Ext.ux.calendar.CalendarContainer = function(config){
     this.on('mousedown', this.onMMouseDownFn, this);
     this.on('showdetailsetting', this.onShowDetailSettingFn, this);
     this.on('refresh', this.refresh, this);
-    this.on('destroy', this.onDestroyFn, this);
-    this.on('afterlayout', this.onAfterrenderFn, this);
+    this.on('destroy', this.onDestroyFn, this);    
 };
 
 Ext.extend(Ext.ux.calendar.CalendarContainer, Ext.Panel, {
-	onAfterrenderFn:function(){
-	     
-	},
+	
     onAfterResizeFn:function(){        
         this.ehandler.fireEvent('calendarloaded');
     },

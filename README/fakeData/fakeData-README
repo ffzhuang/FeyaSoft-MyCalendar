@@ -27,6 +27,9 @@
 Notes: This method just let your have a quick view about myCalendar function.
        You can not save the event. We just hard code the json data for quick
        start application.
+       You need use your backend to create the related json data if you want to
+       integrate myCalendar to your application.
+       You can follow our Grails or PHP code.
 ///////////////////////////////////////////////////////////////////////////////
 
 1: FakeData will provide your a quick way to start myCalendar if you do not have
@@ -44,16 +47,18 @@ Notes: This method just let your have a quick view about myCalendar function.
 
 5: You will see init page appear.
 
-6: Under folder: js/feyaSoft/calendar/common
+6: See the files
 
-   A file: CONST_FAKE_DATA.js is added.
+   Under folder: js/feyaSoft/calendar/common
+
+   A file: CONST_FAKE_DATA.js includes the following two JSON data:
 
       loadEventURL:'fakeData/listEvent.json',
       initialLoadURL:'fakeData/initLoad.json',
 
-7: And a new folder, web-app/fakeData which is used to have the init json data.
+   You can find those 2 json format file under web-app/fakeData.
 
-8: A new index html file is added: web_app/index_fakeData.html
+   A new index html file is added: web_app/index_fakeData.html
 
 
 

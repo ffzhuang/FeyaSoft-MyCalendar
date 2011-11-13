@@ -159,17 +159,6 @@ Ext.extend(Ext.ux.calendar.editor.EventEditor, Ext.form.FormPanel, {
         }
     },
 
-    afterRender:function(){
-        Ext.ux.calendar.editor.EventEditor.superclass.afterRender.call(this);
-        /*if(this.closable){
-            this.addTool({
-                id:'close',
-                handler:this[this.closeAction],
-                scope:this
-            });
-        }*/
-    },
-
     onRenderFn:function(p){
         p.getEl().on('mousedown', function(e){           
             this.mdFlag = true;

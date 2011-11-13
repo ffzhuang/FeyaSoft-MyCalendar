@@ -48,8 +48,8 @@ Ext.ux.calendar.RepeatType = {
         var rt = re.repeatType;
         var beginDay = rt.beginDay;
         var intervalSlot = rt.intervalSlot;
-        var dspan = rt.dspan;
-        var rtime = rt.rtime;
+        var dspan = Number(rt.dspan);
+        var rtime = Number(rt.rtime);
         var dnum = Ext.ux.calendar.Mask.getDayOffset(beginDay, day);        
         var r = dnum%intervalSlot;
         var t = Math.floor(dnum/intervalSlot);
@@ -57,7 +57,7 @@ Ext.ux.calendar.RepeatType = {
             var e = Ext.apply({}, re);
             e.day = day;
             var date = Ext.Date.parseDate(day, 'Y-m-d');
-            e.eday =   Ext.Date.format((Ext.Date.add(date,Date.DAY, dspan)),'Y-m-d');
+            e.eday =   Ext.Date.format((Ext.Date.add(date, Ext.Date.DAY, dspan)),'Y-m-d');
             delete(e.lflag);
             delete(e.rflag);
             return e;
@@ -78,8 +78,8 @@ Ext.ux.calendar.RepeatType = {
         }
         if(rday[n]){
             var intervalSlot = rt.intervalSlot;
-            var dspan = rt.dspan;
-            var rtime = rt.rtime;
+            var dspan = Number(rt.dspan);
+            var rtime = Number(rt.rtime);
             var dnum = Math.floor((Ext.ux.calendar.Mask.getDayOffset(beginDay, day)-n-bn)/7)+1;
             var r = dnum%intervalSlot;
             var t = Math.floor(dnum/intervalSlot);
@@ -87,7 +87,7 @@ Ext.ux.calendar.RepeatType = {
                 var e = Ext.apply({}, re);
                 e.day = day;
                 var date =  vDate.parseDate(day, 'Y-m-d');
-                e.eday = vDate.format((vDate.add(date,Date.DAY, dspan)),'Y-m-d');
+                e.eday = vDate.format((vDate.add(date, vDate.DAY, dspan)),'Y-m-d');
                 delete(e.lflag);
                 delete(e.rflag);
                 return e;
@@ -118,15 +118,15 @@ Ext.ux.calendar.RepeatType = {
         var w = Math.floor(d/7)+1;        
         if(('date' == rby && bd == d) || ('day' == rby && w == bw && n == bn)){
             var intervalSlot = rt.intervalSlot;
-            var dspan = rt.dspan;
-            var rtime = rt.rtime;
+            var dspan = Number(rt.dspan);
+            var rtime = Number(rt.rtime);
             var dnum = 12*y+m-12*by-bm;
             var r = dnum%intervalSlot;
             var t = Math.floor(dnum/intervalSlot);            
             if(0 == r && (!rtime || t < rtime)){
                 var e = Ext.apply({}, re);
                 e.day = day;                
-                e.eday =    vDate.format((vDate.add(date,Date.DAY, dspan)),'Y-m-d');
+                e.eday =    vDate.format((vDate.add(date, vDate.DAY, dspan)),'Y-m-d');
                 delete(e.lflag);
                 delete(e.rflag);
                 return e;
@@ -150,15 +150,15 @@ Ext.ux.calendar.RepeatType = {
         
         if(bm == m && bd == d){            
             var intervalSlot = rt.intervalSlot;
-            var dspan = rt.dspan;
-            var rtime = rt.rtime;
+            var dspan = Number(rt.dspan);
+            var rtime = Number(rt.rtime);
             var dnum = y-by;
             var r = dnum%intervalSlot;
             var t = Math.floor(dnum/intervalSlot);
             if(0 == r && (!rtime || t < rtime)){
                 var e = Ext.apply({}, re);
                 e.day = day;                
-                e.eday =   vDate.format(vDate.add(date,Date.DAY, dspan),'Y-m-d');
+                e.eday =   vDate.format(vDate.add(date, vDate.DAY, dspan),'Y-m-d');
                 delete(e.lflag);
                 delete(e.rflag);
                 return e;

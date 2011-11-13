@@ -1,14 +1,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <title>FeyaSoft Calendar</title>
+    <title>FeyaSoft Calendar | CubeDrive</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="Cache-Control" content="no-store">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Pragma" content="no-cache, must-revalidate, no-store"/>
-    <meta name="keywords" content="Calendar, FeyaSoft, Private Cloud" />
-    <meta name="description" content="CubeDrive includes online office, events, project mgr., CRM, flow chart. Find friend, create group, organization and collaborate in the most efficient way." />
+    <meta name="keywords" content="Calendar, FeyaSoft, CubeDrive, Private Cloud" />
+    <meta name="description" content="CubeDrive Private Cloud includes online office, events, project mgr., CRM, flow chart. Find friend, create group, organization and collaborate in the most efficient way." />
     <meta name="robots" content="all" />
     <meta name="author" content="FeyaSoft Inc." >
 

@@ -1,3 +1,9 @@
+Version 2.5.1, released at August 6, 2011
+
+   Fixed issues related to repeat events.
+   Rewrite the layout in DetailEditor part to fixed the DetailEditor layout issue in IE.
+   Update README to make it clear.
+
 Version 2.5.0, released at August 2, 2011
 
    Upgrade system to make it work with extjs4.X

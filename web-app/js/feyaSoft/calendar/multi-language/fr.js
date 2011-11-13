@@ -28,7 +28,7 @@ Ext.ux.calendar.Language = {
 
     // please help to transfer words after :. Thanks
     'CalendarWin':{
-        'title':'FeyaSoft MyCalendar 2.5.0',
+        'title':'FeyaSoft MyCalendar 2.5.1',
         'loadMask.msg':'S\'il vous pla�t patienter...'
     },
 
