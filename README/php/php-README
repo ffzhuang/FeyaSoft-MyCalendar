@@ -1,6 +1,6 @@
 /**
  * FeyaSoft MyCalendar
- * Copyright(c) 2006-2011, FeyaSoft Inc. All right reserved.
+ * Copyright(c) 2006-2010, FeyaSoft Inc. All right reserved.
  * info@feyasoft.com
  * http://www.feyasoft.com
  *
@@ -8,10 +8,10 @@
  * information, please can visit our link: http://www.feyasoft.com.
  *
  * You need buy one of the Feyasoft's License if you want to use MyCalendar in
- * your commercial product. You must not remove, obscure or interfere with any
- * FeyaSoft copyright, acknowledgment, attribution, trademark, warning or
- * disclaimer statement affixed to, incorporated in or otherwise applied in
- * connection with the Software.
+ * your product. You must not remove, obscure or interfere with any FeyaSoft
+ * copyright, acknowledgment, attribution, trademark, warning or disclaimer
+ * statement affixed to, incorporated in or otherwise applied in connection
+ * with the Software and User Interface.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
  * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE

@@ -523,17 +523,17 @@ Ext.extend(Ext.ux.calendar.CalendarContainer, Ext.Panel, {
     },
     
     onAboutMyCalendarFn : function(){
-        var myHtml = '<div style="float:left;width:140px;padding:20px;"><img src="'+Ext.ux.calendar.CONST.MAIN_PATH+'image/feya128.gif"/></div>' +
+        var myHtml = '<div style="float:left;width:140px;padding: 30px 20px 20px 50px;"><img src="'+Ext.ux.calendar.CONST.MAIN_PATH+'image/logo.png"/></div>' +
         '<div style="float:left;width:300px;padding-top:40px;">' +
-        '    <span style="font-size:16px;"><b>FeyaSoft MyCalendar</b></span><br/>' +
+        '    <span style="font-size:16px;"><b>CubeDrive MyCalendar</b></span><br/>' +
         '    <font color="grey">Version 2.1.0</font>' +
         '    <br/><br/>' +
-        '    Copyright &copy; 2006-2010 FeyaSoft Inc. All right reserved<br/>' +
-        '    <a href="http://www.feyasoft.com" target="_blank">http://www.feyasoft.com</a><br/><br/>' +
+        '    Copyright &copy; 2006-2011 FeyaSoft Inc. All right reserved<br/>' +
+        '    <a href="http://www.cubedrive.com/myCalendar" target="_blank">http://www.cubedrive.com/myCalendar</a><br/><br/>' +
         '</div>' +
         '<div style="clear:left;padding:0 20px 20px;">' +
         '    To query license information, please vist our site or ' +
-        '    send the email to: <a href="mailto:info@feyasoft.com">info@feyasoft.com</a>.' +
+        '    send the email to: <a href="mailto:info@cubedrive.com">info@cubedrive.com</a>.' +
         '    <br><br><hr>' +
         '    Warning: This computer program is protected by the copyright law and international treaties. Unauthorized ' +
         '    reproduction or distribution this program, or any portion of it, maybe result in severe civil and ' +
@@ -542,7 +542,7 @@ Ext.extend(Ext.ux.calendar.CalendarContainer, Ext.Panel, {
 
         var aboutUsWin = new Ext.Window({
             iconCls:'icon_feyaCalendar_feyasoft',
-            title:'About FeyaSoft MyCalendar',
+            title:'About CubeDrive MyCalendar',
             width:600,
             height: 300,
             closable:true,
