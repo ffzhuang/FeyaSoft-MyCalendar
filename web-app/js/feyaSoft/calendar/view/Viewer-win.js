@@ -56,7 +56,7 @@ Ext.onReady(function(){
                 Ext.defer(fn, 50);
             }else{
             	var wn = new Ext.ux.calendar.CalendarWin({
-            		title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
+            	    title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
                     datasource : ds,
                     calendarSetting : cs,
                     userId : userId

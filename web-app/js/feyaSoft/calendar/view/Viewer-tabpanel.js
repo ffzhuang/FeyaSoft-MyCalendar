@@ -56,6 +56,7 @@ Ext.onReady(function(){
                 Ext.defer(fn, 50);
             }else{
                 var mp = new Ext.ux.calendar.MainPanel({
+                	border: false,
                     title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
                     datasource:ds,
                     calendarSetting:cs,

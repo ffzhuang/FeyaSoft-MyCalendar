@@ -60,8 +60,7 @@ Ext.ux.calendar.MainPanel = function(config){
         ehandler:this.ehandler
     });
     
-	Ext.ux.calendar.MainPanel.superclass.constructor.call(this, {
-		border:false,
+	Ext.ux.calendar.MainPanel.superclass.constructor.call(this, {		
 		layout:'border',        
 		items:[
 			this.westPanel,
@@ -81,11 +80,15 @@ Ext.ux.calendar.MainPanel = function(config){
 
 Ext.extend(Ext.ux.calendar.MainPanel, Ext.Panel, {
     _onBeforeRemoteLoadFn:function(){
-        this.loadMask.show();
+    	if(this.loadMask){
+    		this.loadMask.show();
+    	}        
     },
 
     _onRemoteLoadFn:function(){
-    	this.loadMask.hide();        
+    	if(this.loadMask){
+    		this.loadMask.hide();
+    	}        
     },
 
     onAfterRenderFn:function(p){

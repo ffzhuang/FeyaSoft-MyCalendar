@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="${createLinkTo(dir:'js',file:'extjs/resources/css/ext-all.css')}"></link>
     <link rel="stylesheet" href="${createLinkTo(dir:'js/feyaSoft/calendar/css',file:'calendar.css')}"></link>
-    <script type="text/javascript" src="${createLinkTo(dir:'js',file:'extjs/ext-all-debug.js')}"></script>
+    <script type="text/javascript" src="${createLinkTo(dir:'js',file:'extjs/ext-all.js')}"></script>
 
     <g:javascript library="feyaSoft/calendar/util/LabelField"/>
     <g:javascript library="feyaSoft/calendar/util/DatePicker"/>
@@ -47,9 +47,22 @@
     <g:javascript library="feyaSoft/calendar/view/WestPanel"/>
     <g:javascript library="feyaSoft/calendar/view/MainPanel"/>
     <g:javascript library="feyaSoft/calendar/view/CalendarWin"/>
+
+    <!-- for render example, please use this one
+    <g:javascript library="feyaSoft/calendar/view/Viewer-DIV"/>
+    -->
+    <!-- for tab example, please use this one
+    <g:javascript library="feyaSoft/calendar/view/Viewer-tabpanel"/>
+    -->
+    <!-- for window example, please use this one
+    <g:javascript library="feyaSoft/calendar/view/Viewer-win"/>
+    -->
     <g:javascript library="feyaSoft/calendar/view/Viewer"/>
+
 </head>
 <body>
-
+    <!-- render to DIV, need add this
+    <div id="calendar-container"></div>
+    -->
 </body>
 </html>

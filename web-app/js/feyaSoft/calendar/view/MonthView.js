@@ -184,23 +184,23 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 		this.viewerTpl.compile();
 
 		var obj = [];
-		var sdate = this.daySet[0];
-		var week = Ext.Date.getWeekOfYear(sdate);
+		var sdate = this.daySet[0], wdate;
+				
 		for (var i = 0; i < this.templateRowNum; i++) {
 			var arr = [];
 			for (var j = 0; j < this.dayNum; j++) {
 				arr[arr.length] = {
 					idx : j,
-					day : Ext.Date
-							.format((Ext.Date.add(sdate, Ext.Date.DAY, i
-													* this.dayNum + j)),
-									this.dayFormat)
+					day : Ext.Date.format((Ext.Date.add(sdate, Ext.Date.DAY, i * this.dayNum + j)), this.dayFormat)
 				};
 			}
-			var w = (week + i) % 53;
-			if (0 == w) {
-				w = 53;
-			}
+			wdate = Ext.Date.add(sdate, Ext.Date.DAY, i*7);
+			var n = Ext.Date.format(wdate, 'N');
+			if(7 == n){
+				wdate = Ext.Date.add(wdate, Ext.Date.DAY, 1);
+			}				
+			var w = Ext.Date.getWeekOfYear(wdate);
+			
 			obj[obj.length] = {
 				idx : i,
 				week : w,
@@ -1224,7 +1224,11 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 	resizePort : Ext.emptyFn,
 
 	refreshDate : function() {
-		var week = Ext.Date.getWeekOfYear(this.daySet[0]);
+		var sdate = this.daySet[0];	
+		var n = Ext.Date.format(sdate, 'N');
+		if(7 == n){
+			sdate = Ext.Date.add(sdate, Ext.Date.DAY, 1);
+		}				
 		for (var i = 0; i < this.weekNum; i++) {
 			for (var j = 0; j < this.dayNum; j++) {
 				var titleEl = Ext.get(this.id + '-x-monthview-viewer-link-' + i
@@ -1236,11 +1240,9 @@ Ext.ux.calendar.view.MonthView = Ext.extend(Ext.ux.calendar.view.BasicView, {
 				}
 			}
 			var weekEl = Ext.get(this.id + '-x-monthview-week-' + i + '-0');
-			if (weekEl) {
-				var w = (week + i) % 53;
-				if (0 == w) {
-					w = 53;
-				}
+			if (weekEl) {				
+				var w = Ext.Date.add(sdate, Ext.Date.DAY, i*7);
+				w = Ext.Date.getWeekOfYear(w);
 				weekEl.dom.innerHTML = w;
 			}
 		}

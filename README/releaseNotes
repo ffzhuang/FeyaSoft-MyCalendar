@@ -1,3 +1,13 @@
+Version 2.5.4, released at October 25, 2011
+
+    Fixed the issue related to week number - when calendar setting put Sunday as week start date.
+    Add Render calendar to DIV example.
+
+Version 2.5.3, released at October 10, 2011
+
+        Fix rd.data bug
+        Fix the issue related to date in detail panel
+
 Version 2.5.2, released at August 10, 2011
 
     Fixed the following issues:

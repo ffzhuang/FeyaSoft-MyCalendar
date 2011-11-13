@@ -27,6 +27,7 @@ Ext.ns('Ext.ux.calendar');
 Ext.ux.calendar.CalendarWin = Ext.extend(Ext.Window, {    	    
 	initComponent: function(){        
         this.mainPanel = new Ext.ux.calendar.MainPanel({
+        	border: false,
         	datasource:this.datasource,
             calendarSetting:this.calendarSetting,
             userId:this.userId

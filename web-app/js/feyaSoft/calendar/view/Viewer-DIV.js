@@ -66,22 +66,22 @@ Ext.onReady(function() {
                     Ext.defer(fn, 50)
                 } else {
 
-                    var mp = new Ext.ux.calendar.MainPanel({
+                    var mp = new Ext.ux.calendar.MainPanel({  
+                    	border: true,
                     	title : 'Calendar | CubeDrive Version [' + Ext.ux.calendar.CONST.VERSION + ']',
-                    	tools : [{
-                            type : 'close',
-                            handler : function(){                            	
-                            	window.close();
-                            }
-                        }],
                         datasource : ds,
                         calendarSetting : cs,
-                        userId : userId
-                    });
-                    var dv = new Ext.Viewport({
-                        layout : 'fit',
-                        items : [mp]
-                    });
+                        userId : userId,
+                        width: 1200,
+                        height: 600,
+                        /*
+                         * here render the calendar into the html DIV, of course, you need have a div in your html
+                         * and you pass the id or ref of the div to "renderTo"
+                         * notice: you need set the width and height of the calendar panel
+                         */
+                        renderTo: 'calendar-container'
+                    });                    
+                    
                     wait.hide();
                 }
             };
