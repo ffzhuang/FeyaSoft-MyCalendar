@@ -1,8 +1,8 @@
-MyCalendar[2.5.5] is an extjs-based calendar widget for visualizing time-based
+MyCalendar is an extjs-based calendar widget for visualizing time-based
 events. It is capable of rendering dynamic, calendar-style views of event data
 from JSON data. MyCalendar does not tight to any specific server for its data
 backend. You can use Java, PHP, .NET to create JSON data and feed to MyCalendar.
-Work with extjs4.x and extjs3.x.
+Work with extjs4.x.
 
 MyCalendar is released under the GNU GPL 3.0 license and Commerical License.
 MyCalendar uses the same dual licensing model used by Sencha for Ext JS. It's
