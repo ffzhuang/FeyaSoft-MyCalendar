@@ -1,4 +1,4 @@
-/**
+﻿/**
  * FeyaSoft MyCalendar
  * Copyright(c) 2006-2011, FeyaSoft Inc. All right reserved.
  * info@feyasoft.com
@@ -28,7 +28,7 @@ Ext.ux.calendar.Language = {
 
     // please help to transfer words after :. Thanks
     'CalendarWin':{
-        'title':'FeyaSoft MyCalendar 2.5.2',
+        'title':'FeyaSoft MyCalendar 2.5.3',
         'loadMask.msg':'Please wait...'
     },
 

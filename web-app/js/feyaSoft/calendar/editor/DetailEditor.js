@@ -83,9 +83,19 @@ Ext.ux.calendar.editor.DetailEditor = function(config){
         triggerAction:'all',
         selectOnFocus:true,
         allowBlank: false,
-        editable:false,
+        editable:false,        
         flex:1
 	});
+	/*
+	 * fix the max-height issue when the data is changed
+	 */
+	this.endTimeField.on('expand', function(){
+		var picker = this.endTimeField.getPicker();
+		var h = picker.getHeight(), max = picker.maxHeight;		
+		if(h > max){
+			picker.setHeight(max);
+		}		
+	}, this);
 
 	this.wholeField = this.wholeField || new Ext.form.Checkbox({		
 		style: 'margin-left:5px;',
@@ -610,6 +620,8 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 }
                 this.endTimeField.setValue(ev);
             }
+        }else{        	
+        	this.reloadEndTimeStore(null, true);
         }
     },
 
@@ -625,7 +637,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
         store.loadData(data);
     },
 
-    reloadEndTimeStore:function(sIndex, all){
+    reloadEndTimeStore:function(sIndex, all){    	
         var store = this.endTimeField.store;
         store.removeAll();
         var data;
@@ -633,7 +645,11 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
             data = Ext.ux.calendar.Mask.generateIntervalData(this.intervalSlot, 0, this.rowCount, this.ehandler.hourFormat);
         }else{
             if(false == Ext.ux.calendar.Mask.typeOf(sIndex)){
-                sIndex = this.activeStartRow;
+            	if(this.hideInactiveRow){
+            		sIndex = this.activeStartRow;
+            	}else{
+            		sIndex = 0;
+            	}
             }else{
                 sIndex++;
             }
@@ -643,7 +659,7 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 data = Ext.ux.calendar.Mask.generateIntervalData(this.intervalSlot, sIndex, this.rowCount, this.ehandler.hourFormat);
             }
         }
-        store.loadData(data);
+        store.loadData(data);           
     },
 
     onStartTimeSelectFn:function(combo, rd, index){
@@ -660,22 +676,39 @@ Ext.extend(Ext.ux.calendar.editor.DetailEditor, Ext.ux.calendar.view.BasicView, 
                 eIndex = v+span;
                 this.reloadEndTimeStore(v);
             }
-        }
+        }        
+        
         if(false != Ext.ux.calendar.Mask.typeOf(eIndex)){
-            if(this.activeEndRow >= eIndex){
-                this.endTimeField.setValue(eIndex);
-            }else{
-                this.endTimeField.setValue(this.activeEndRow);
-            }
+        	if(this.hideInactiveRow){
+        		if(this.activeEndRow >= eIndex){
+                    this.endTimeField.setValue(eIndex);
+                }else{                
+                    this.endTimeField.setValue(this.activeEndRow);
+                }
+        	}else{
+        		if(this.rowCount >= eIndex){
+                    this.endTimeField.setValue(eIndex);
+                }else{                	
+                    this.endTimeField.setValue(this.rowCount);
+                }
+        	}            
         }
     },
 
-    onCalendarSelectFn:function(combo, rd, index){
+    onCalendarSelectFn:function(field, val, options){
         var coverEl = this.bindEl;
         if(coverEl && !coverEl.hold){
             var event = coverEl.bindEvent;
             var cview = coverEl.cview;
             var eh = cview.ehandler;
+            /*
+             * get the selected rd, fix bug74, it's because extjs4 changed the 'select' event of combobox
+             */
+            var store = this.calendarField.store;
+            var value = this.calendarField.getValue();            
+            var index = store.find('id', value);            
+            var rd = store.getAt(index);
+            
             var color = eh.calendarSet[rd.data.id].color;
             var arr = Ext.DomQuery.select('div[name=x-event-'+event.day+'-'+event.eday+'-'+event.eventId+']', cview.body.dom);
             for(var i = 0, len = arr.length; i < len; i++){

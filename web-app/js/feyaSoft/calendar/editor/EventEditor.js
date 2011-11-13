@@ -174,12 +174,19 @@ Ext.extend(Ext.ux.calendar.editor.EventEditor, Ext.form.FormPanel, {
         this.fireEvent('showdetailsetting', this.obj);
     },    
 
-    onCalendarSelectFn:function(combo, rd, index){
+    onCalendarSelectFn:function(field, val, options){
         var coverEl = this.bindEl;
         if(coverEl && !coverEl.hold){
             var event = coverEl.bindEvent;
             var cview = coverEl.cview;
             var eh = cview.ehandler;
+            /*
+             * get the selected rd, fix bug74, it's because extjs4 changed the 'select' event of combobox
+             */
+            var store = this.calendarField.store;
+            var value = this.calendarField.getValue();            
+            var index = store.find('id', value);            
+            var rd = store.getAt(index);
             var color = eh.calendarSet[rd.data.id].color;
             var arr = Ext.core.DomQuery.select('div[name=x-event-'+event.day+'-'+event.eday+'-'+event.eventId+']', cview.body.dom);
             for(var i = 0, len = arr.length; i < len; i++){

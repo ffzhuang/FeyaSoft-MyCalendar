@@ -27,7 +27,7 @@ Ext.ns("Ext.ux.calendar");
 Ext.ux.calendar.Language = {
 
     'MainPanel':{
-        'title':'FeyaSoft MyCalendar 2.5.2',
+        'title':'FeyaSoft MyCalendar 2.5.3',
         'loadMask.msg':'Prašome palaukti...'
     },
     

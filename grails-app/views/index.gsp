@@ -24,30 +24,30 @@
     <g:javascript library="feyaSoft/calendar/common/LanManager"/>
     <g:javascript library="feyaSoft/calendar/common/Mask"/>
     <g:javascript library="feyaSoft/calendar/common/RepeatType"/>
+    <g:javascript library="feyaSoft/calendar/common/CommentTip"/>
+    <g:javascript library="feyaSoft/calendar/common/BackThread"/>
 
-    <g:javascript library="feyaSoft/calendar/CommentTip"/>
     <g:javascript library="feyaSoft/calendar/view/BasicView"/>
-    <g:javascript library="feyaSoft/calendar/layout/Block"/>
-    <g:javascript library="feyaSoft/calendar/layout/BlockMap"/>
-    <g:javascript library="feyaSoft/calendar/layout/Line"/>
-    <g:javascript library="feyaSoft/calendar/layout/LayoutGrid"/>
-    <g:javascript library="feyaSoft/calendar/layout/CalendarLayout"/>
-    <g:javascript library="feyaSoft/calendar/popup/ExpirePopup"/>
-    <g:javascript library="feyaSoft/calendar/popup/SettingPopup"/>
-    <g:javascript library="feyaSoft/calendar/BackThread"/>
-    <g:javascript library="feyaSoft/calendar/DataSource"/>
+    <g:javascript library="feyaSoft/calendar/store/DataSource"/>
     <g:javascript library="feyaSoft/calendar/editor/EventEditor"/>
     <g:javascript library="feyaSoft/calendar/editor/DetailEditor"/>
     <g:javascript library="feyaSoft/calendar/editor/CalendarEditor"/>
-    <g:javascript library="feyaSoft/calendar/EventHandler"/>
+    <g:javascript library="feyaSoft/calendar/control/EventHandler"/>
+    <g:javascript library="feyaSoft/calendar/view/popup/ExpirePopup"/>
+    <g:javascript library="feyaSoft/calendar/view/popup/SettingPopup"/>
+    <g:javascript library="feyaSoft/calendar/view/layout/Block"/>
+    <g:javascript library="feyaSoft/calendar/view/layout/BlockMap"/>
+    <g:javascript library="feyaSoft/calendar/view/layout/Line"/>
+    <g:javascript library="feyaSoft/calendar/view/layout/LayoutGrid"/>
+    <g:javascript library="feyaSoft/calendar/view/layout/CalendarLayout"/>
     <g:javascript library="feyaSoft/calendar/view/DayView"/>
     <g:javascript library="feyaSoft/calendar/view/MonthView"/>
     <g:javascript library="feyaSoft/calendar/view/ResultView"/>
-    <g:javascript library="feyaSoft/calendar/CalendarContainer"/>
-    <g:javascript library="feyaSoft/calendar/WestPanel"/>
-    <g:javascript library="feyaSoft/calendar/MainPanel"/>
-    <g:javascript library="feyaSoft/calendar/CalendarWin"/>
-    <g:javascript library="feyaSoft/calendar/Viewer"/>           
+    <g:javascript library="feyaSoft/calendar/view/CalendarContainer"/>
+    <g:javascript library="feyaSoft/calendar/view/WestPanel"/>
+    <g:javascript library="feyaSoft/calendar/view/MainPanel"/>
+    <g:javascript library="feyaSoft/calendar/view/CalendarWin"/>
+    <g:javascript library="feyaSoft/calendar/view/Viewer"/>
 </head>
 <body>
 
