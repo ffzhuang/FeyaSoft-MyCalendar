@@ -28,13 +28,13 @@ Ext.ux.calendar.CONST = {
     /*
      * The version number of myCalendar
      */
-    VERSION:'2.0.5',
+    VERSION:'2.1.2',
     /*
      *true to show the language submenu in myCalendar, or not
      *
      */
     SHOW_LANGUAGE_MENU:true,
-    
+
     BLANK_IMAGE_URL:'/myCalendar/js/extjs/resources/images/default/s.gif',
     /*
      *define the main path of myCalendar
